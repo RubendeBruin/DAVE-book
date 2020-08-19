@@ -1,0 +1,8 @@
+- file: intro
+- file: concepts
+  sections:
+    - file: assets_and_resources
+- file: technical
+  sections:
+    - file: groups
+    - file: notebooks

@@ -1,0 +1,8 @@
+# Book settings
+title: DAVE
+author: Ruben de Bruin
+logo: logo.png
+
+latex:
+  latex_documents:
+    targetname: book.tex
