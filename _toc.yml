@@ -2,6 +2,9 @@
 - file: concepts
   sections:
     - file: assets_and_resources
+- file: building_blocks
+  sections:
+    - file: geometry
 - file: technical
   sections:
     - file: groups
