@@ -5,6 +5,10 @@
 - file: building_blocks
   sections:
     - file: geometry
+    - file: points_and_circles
+    - file: all_other_nodes
+    - file: nodes_overview
+    - file: solving_and_dofs
 - file: technical
   sections:
     - file: groups
