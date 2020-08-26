@@ -1,6 +1,10 @@
 ### Nodes overview
 
-As a teaser a short overview of all available node types is given here.
+A short overview of all available node types is given here. You may skip this section if you want.
+
+
+![nodes_in_gui](images/all_nodes_gui.png)
+
 
 #### Backbone
 
@@ -26,7 +30,7 @@ Connectors connect two or more nodes and can apply a force on them based on thei
 |  Type | Provides  | 
 |:---------------- |:------------------------------- |
 | `Cable` | A finite length cable with linear stiffness. A cable runs between two Point nodes and can run over multiple pois or circles. A cable may have a diameter.   | 
-| `LinearBeam` | A beam connects two axis systems with a linear beam element   |  `Scene.new_linear_beam` |
+| `LinearBeam` | A beam connects two axis systems with a linear beam element  |
 | `LC6d` | Connects two axis systems with six linear springs. Orientation of the springs is determined by the main axis system  |
 | `Connector2d` | Connects two axis systems with two linear springs. Orientation of the springs is determined by shortest distance between the two axis systems |
 

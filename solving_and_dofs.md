@@ -93,59 +93,7 @@ Also the situation where the piano is upside-down with its cog right above the l
 It is also possible that a model does not have an equilibrium position at all. Try removing the cable from the model and solving statics.... In such cases the undo button next to the solve-statics button comes in handy.
 ```
 
-#### Joints
 
-Joints are connections between bodies that allow certain movements and prohibit others. For example a hinge, ball-joint or slider. Some software packages use joints nodes or elements to model joints.  *DAVE does not need a dedicated joint node.*
-
-To model a joint in DAVE it is sufficient to release the relevant degree of freedom of an Axis.
-
-Examples:
-- to model a slider in x-direction : release only the X position
-- to model a ball-joint: release all rotational degrees of freedom
-- to model a hinge: release a single rotational degree of freedom 
-
-But how to model a slider in a direction that it not x,y or z? The solution is simple. Stack the partially released axis on another axis and rotate that second axis such that one of the main directions of the partially released axis points in the right direction.
-
-
-##### Example: hinging bar
-
-The following example models a bar connected to a hinge.
-
-![solving2](images/solving_4.png)
-
-- The bar is an Axis node
-- The cog of the bar is modelled by placing a Point on the bar (the parent of center of gravity is piano)
-- Gravity is modelled by applying a force node on the cog with a downward force of 1000 kN
-- A visual is added just because we can
-
-
-You can create this model by copy-pasting the following python code into the Gui and executing it.
-
-```python
-
-s.new_axis(name='Axis',
-           fixed =(True, True, True, True, False, True) )
-
-s.new_point(name='cog',
-          parent='Axis',
-          position=(5.0,
-                    0.0,
-                    0.0))
-
-s.new_visual(name='Visual',
-            parent='Axis',
-            path=r'cube.obj',
-            offset=(5.0, 0.0, 0.0), 
-            rotation=(0, 0, 0), 
-            scale=(10.0, 0.2, 0.2) )
-
-s.new_force(name='weight',
-            parent='cog',
-            force=(0.0, 0.0, -1000.0),
-            moment=(0.0, 0.0, 0.0) )
-```
-
-In this example the hinge is modelled by releasing the Y-rotation of the beam.
 
 
 

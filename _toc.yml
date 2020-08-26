@@ -1,14 +1,30 @@
-- file: intro
-- file: concepts
+- file: introduction
   sections:
-    - file: assets_and_resources
-- file: building_blocks
+    - file: concepts
+- file: installation
+  sections:
+    - file: configuration
+- file: modelling_basics
   sections:
     - file: geometry
     - file: points_and_circles
     - file: all_other_nodes
     - file: nodes_overview
     - file: solving_and_dofs
+    - file: joints
+    - file: forces
+    - file: trees_and_loops
+- file: assets_and_resources
+- file: reporting
+- file: rendering
+- file: nodes    
+- file: nodes_reference
+- file: dynamics
+- file: python
+  sections:
+    - file: python_imports
+    - file: python_scene
+    - file: launching_the_gui
 - file: technical
   sections:
     - file: groups
