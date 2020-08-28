@@ -58,7 +58,7 @@ The vertical force and y-moment in the axis nodes can then be used to obtain the
 
 ![forces1](images/forces_3.png)
 
-#### Degrees of freedom
+##### Degrees of freedom
 In the previous examples we have assumed that all degrees of freedom were fixed. If all the degrees of freedom are fixed then the Axis is rigidly connected to its parent or the world. In that case the connection-force and the applied-load are exactly opposite.
 
 If a degree of freedom is released then the connection force for that degree of is set to 0. 
@@ -74,13 +74,15 @@ The difference between the `applied_force` and the `connection_force` is called 
 Solving static equilibrium will minimize the equilibrium_error by changing the degrees of freedom that are not fixed.
 
 
-#### How the force in a cable is calculated
+##### Forces in elastic nodes
+
+The forces in elastic nodes are calcualted based the positions of the nodes that they connect.
 
 For a cable the distance bewteen the endpoints is obtained from the current geometry, this is then used to calculate the stretch, the stretch is combined with the stiffness to give the tension. The force due to the tension is then applied on the endpoints and intermediate points. In case of a cable these are Point or Circle type nodes.
 
 The 2d and 6d connectors work similarly.
 
-#### Axis and Points without a parent
+##### Axis and Points without a parent
 
 Axis and Point type nodes do not need to have a parent. 
 Points without a parent are considered to be fixed to the world.

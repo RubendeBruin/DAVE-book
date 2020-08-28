@@ -16,10 +16,14 @@
     - file: trees_and_loops
 - file: assets_and_resources
 - file: reporting
+  sections:
+    - file: DAVE-notebooks/Reporting node properties.ipynb
 - file: rendering
 - file: nodes    
 - file: nodes_reference
 - file: dynamics
+  sections:
+  - file: DAVE-notebooks/dynamics.ipynb
 - file: python
   sections:
     - file: python_imports
@@ -28,4 +32,9 @@
 - file: technical
   sections:
     - file: groups
-    - file: notebooks
+- file: notebooks
+  sections:
+    - file: DAVE-notebooks/force_traveling_through_rotated_axis_systems.ipynb
+    - file: DAVE-notebooks/force_traveling_through_a_beam.ipynb
+    - file: DAVE-notebooks/Reporting node properties.ipynb
+    - file: DAVE-notebooks/dynamics.ipynb
