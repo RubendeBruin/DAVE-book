@@ -1,6 +1,4 @@
 - file: introduction
-  sections:
-    - file: concepts
 - file: installation
   sections:
     - file: configuration
@@ -15,15 +13,14 @@
     - file: forces
     - file: trees_and_loops
 - file: assets_and_resources
+- file: concepts
 - file: reporting
-  sections:
-    - file: DAVE-notebooks/Reporting node properties.ipynb
 - file: rendering
 - file: nodes    
 - file: nodes_reference
+- file: rigging
+- file: marine_calculations
 - file: dynamics
-  sections:
-  - file: DAVE-notebooks/dynamics.ipynb
 - file: python
   sections:
     - file: python_imports
@@ -38,3 +35,7 @@
     - file: DAVE-notebooks/force_traveling_through_a_beam.ipynb
     - file: DAVE-notebooks/Reporting node properties.ipynb
     - file: DAVE-notebooks/dynamics.ipynb
+    - file: DAVE-notebooks/Suspended weight.ipynb
+    - file: DAVE-notebooks/Carene Table.ipynb
+    - file: DAVE-notebooks/dynamics.ipynb
+    - file: DAVE-notebooks/Reporting node properties.ipynb

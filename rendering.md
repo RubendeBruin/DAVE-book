@@ -1,12 +1,18 @@
 ## Rendering
 
+Rendering is the art of converting a 3d model to a good looking 2d picture or video.
+
+![image](./images/cheetah_with_crane.jpg)
+
 Blender can be used for world-class rendering. It is completely free and can be obtained from [blender](https://www.blender.org/)
 
 Once blender is installed a scene can be exported to blender directly by pressing the cute blender icon:
 
 ![present](images/rendering_1.png)
 
-When an animation is running then this will export the animation. Otherwise it will export the view.
+```{admonition} Animations
+When an animation is running then pressing the blender button will export the animation. Otherwise it will export the view.
+```
 
 ### The Base Scene
 
@@ -38,6 +44,6 @@ This means that for a workflow with a nicely rendered result it is advised to
 
 
 ```{admonition} Blog
-https://www.open-ocean.org/meshing-with-blender/
+[Blog post : meshing with blender](https://www.open-ocean.org/meshing-with-blender/)
 ```
 

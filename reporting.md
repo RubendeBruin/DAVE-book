@@ -36,5 +36,6 @@ It is also possible to open the Gui from the notebook.
 
 And of course you can leverage all exisitng jupyter and python functionality such as pandas, matplotlib, pdf export etc.
 
-For further information see [Reporting node properties.ipynb]
+### Notebooks
+ {doc}`Reporting demonstrations<DAVE-notebooks/Reporting node properties>`
 

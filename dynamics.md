@@ -31,5 +31,5 @@ The inertia and stiffness matrices are derived numerically using a given displac
 
 ### Notebooks
 
-[TODO]
+{doc}`Dynamic matrices<DAVE-notebooks/dynamics>`
 
