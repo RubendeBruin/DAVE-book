@@ -1,6 +1,8 @@
 - file: introduction
-- file: installation
+- file: getting_started
   sections:
+    - file: open_source
+    - file: installation
     - file: configuration
 - file: modelling_basics
   sections:

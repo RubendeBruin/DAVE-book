@@ -2,6 +2,8 @@
 
 DAVE stands for Design Analysis Visualization Engineering.
 
+![mooi plaatje](images/introduction_1.jpg)
+
 It is a software framework that helps to design marine operations in a visual yet accurate way. DAVE can do rigging design as well as hydrostatics and rendering and dynamics.
 
 Its mission is:
@@ -18,4 +20,10 @@ DAVE is partially written in Python. The python parts are open-source and can be
 
 The core where the calculations are performed is a commercial and closed-source component. This component can be used for free for educational, non-commercial and evaluation purposes. Commercial support is available if needed.
 
-![nodes_in_gui](images/introduction_1.jpg)
+**DAVE is for ALL engineers**
+
+DAVE is not strictly for pricipal, marine, structural, animation or sales engineers. It strives to delier an environment for all disciplines at the same time.
+
+![rigging](images/4prigging.jpg)
+
+![ballast](images/marine_ballast_1.png)
