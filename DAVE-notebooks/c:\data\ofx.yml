@@ -1,0 +1,87 @@
+---
+6DBuoys:
+- CentreOfMass:
+  - 0.0
+  - -1.0
+  - 0.0
+  Connection: Free
+  InitialAttitude:
+  - 92.12839862984977
+  - 30.86092683863661
+  - -71.66705033188366
+  InitialPosition:
+  - 0.13983874241397024
+  - -0.016316405272163607
+  - 12.663527297700455
+  Mass: 5.0
+  MomentsOfInertia:
+  - 0.0
+  - 0.0
+  - 0.0
+  Name: test
+- CentreOfMass:
+  - 0.0
+  - -1.0
+  - 0.0
+  Connection: test2 [fixes]
+  InitialAttitude:
+  - 0
+  - 0
+  - 0
+  InitialPosition:
+  - 0
+  - 0
+  - 0
+  Mass: 5.0
+  MomentsOfInertia:
+  - 0.0
+  - 0.0
+  - 0.0
+  Name: test2
+Constraints:
+- Connection: test
+  DOFFree:
+  - 'No'
+  - 'No'
+  - 'No'
+  - 'No'
+  - 'Yes'
+  - 'No'
+  InitialAttitude:
+  - 0.0
+  - 0.0
+  - 0.0
+  InitialPosition:
+  - 5.0
+  - 0.0
+  - 0.0
+  Name: test2 [fixes]
+Winches:
+- Connection:
+  - test
+  - Fixed
+  - test
+  ConnectionX:
+  - -1.0
+  - 0.0
+  - 1.0
+  ConnectionY:
+  - -1.0
+  - 0.0
+  - 1.0
+  ConnectionZ:
+  - -1.0
+  - 20.0
+  - 1.0
+  Name: line
+  NumberOfConnections: 3
+  StageMode:
+  - Specified Length
+  - Specified Payout
+  - Specified Payout
+  StageValue:
+  - 10.0
+  - 0
+  - 0
+  Stiffness: 100.0
+  WinchControlType: By Stage

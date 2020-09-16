@@ -1,0 +1,174 @@
+---
+6DBuoys:
+- CentreOfMass:
+  - 0
+  - 0
+  - 0
+  Connection: Fixed
+  InitialAttitude:
+  - 0.0
+  - 0.0
+  - 0.0
+  InitialPosition:
+  - 0.0
+  - 0.0
+  - 0.0
+  Mass: 1.0e-06
+  MomentsOfInertia:
+  - 1.0e-06
+  - 1.0e-06
+  - 1.0e-06
+  Name: barge_positioning_target
+  Volume: 0
+- CentreOfMass:
+  - 0
+  - 0
+  - 0
+  Connection: Free
+  InitialAttitude:
+  - 0.0
+  - 0.0
+  - 0.0
+  InitialPosition:
+  - 50.0
+  - 0.0
+  - 5.7035494993584734e-08
+  Mass: 1.0e-06
+  MomentsOfInertia:
+  - 1.0e-06
+  - 1.0e-06
+  - 1.0e-06
+  Name: autocreated_parent_for_Hyd
+  Volume: 0
+- CentreOfMass:
+  - 50.0
+  - 0.0
+  - 5.0
+  Connection: BargeVessel
+  InitialAttitude:
+  - 0
+  - 0
+  - 0
+  InitialPosition:
+  - 0
+  - 0
+  - 0
+  Mass: 12299.999824615852
+  MomentsOfInertia:
+  - 1229999.9824615852
+  - 19679999.719385363
+  - 19679999.719385363
+  Name: Barge
+  Volume: 0
+- CentreOfMass:
+  - 0.0
+  - 0.0
+  - 0.0
+  Connection: Barge
+  InitialPosition:
+  - 0.0
+  - 0.0
+  - 0.0
+  Mass: 0.0
+  MomentsOfInertia:
+  - 0.0
+  - 0.0
+  - 0.0
+  Name: Barge Ballast system
+  Volume: 0
+Shapes:
+- Connection: Barge
+  Name: Barge Visual
+  OriginX: 0
+  OriginY: 0
+  OriginZ: 0
+  OutsidePenColour: 55551
+  Rotation1: 0
+  Rotation2: 0
+  Rotation3: 0
+  ShadedDrawingFileName: barge.obj
+  ShadedDrawingMirrorInPlane: XZ plane
+  ShadedDrawingRotation1: 0
+  ShadedDrawingRotation2: 90
+  ShadedDrawingRotation3: -90
+  Shape: Block
+  ShapeType: Drawing
+VesselTypes:
+- Draughts:
+  - CentreOfBuoyancyX: 49.99999999999999
+    CentreOfBuoyancyY: 0.0
+    CentreOfBuoyancyZ: 1.999999971482253
+    CentreOfGravityX: 0
+    CentreOfGravityY: 0
+    CentreOfGravityZ: 0
+    DisplacedVolume: 11999.999828893517
+    HydrostaticReferenceOriginDatumOrientationx: 0
+    HydrostaticReferenceOriginDatumOrientationy: 0
+    HydrostaticReferenceOriginDatumPositionz: -3.999999942964505
+    HydrostaticStiffnessRx:
+    - -2.743558980000671e-08
+    - 2503947.9524628296
+    - 0.0
+    HydrostaticStiffnessRy:
+    - -1508287.4999999998
+    - 0.0
+    - 25379624.944301043
+    HydrostaticStiffnessz:
+    - 30165.749999963416
+    - -2.743558980000671e-08
+    - -1508287.4999999998
+    Mass: 1.0e-06
+    MomentOfInertiaTensorX:
+    - 0.001
+    - 0
+    - 0
+    MomentOfInertiaTensorY:
+    - 0
+    - 0.001
+    - 0
+    MomentOfInertiaTensorZ:
+    - 0
+    - 0
+    - 0.001
+    Name: Draught1
+    OtherDampingLinearCoeffRx: 0
+    OtherDampingLinearCoeffRy: 0
+    OtherDampingLinearCoeffRz: 0
+    OtherDampingLinearCoeffx: 0
+    OtherDampingLinearCoeffy: 0
+    OtherDampingLinearCoeffz: 0
+    OtherDampingOriginx: 0.0
+    OtherDampingOriginy: 0.0
+    OtherDampingOriginz: 0.0
+    OtherDampingQuadraticCoeffRx: 0
+    OtherDampingQuadraticCoeffRy: 0
+    OtherDampingQuadraticCoeffRz: 0
+    OtherDampingQuadraticCoeffx: 0
+    OtherDampingQuadraticCoeffy: 0
+    OtherDampingQuadraticCoeffz: 0
+    StiffnessInertiaDampingRefOriginx: 0.0
+    StiffnessInertiaDampingRefOriginy: 0.0
+    StiffnessInertiaDampingRefOriginz: 0.0
+  Length: 1
+  Name: BargeLinear buoyancy
+  RAOPhaseConvention: lags
+  RAOPhaseUnitsConvention: radians
+  WavesReferredToBy: frequency (rad/s)
+Vessels:
+- IncludeAddedMassAndDamping: 'Yes'
+  IncludeOtherDamping: 'Yes'
+  IncludeWaveLoad1stOrder: 'Yes'
+  IncludedInStatics: 6 DOF
+  InitialHeading: 0.0
+  InitialHeel: 0.0
+  InitialPosition:
+  - -50.0
+  - 0.0
+  - -4.0
+  InitialTrim: 0.0
+  Length: 1
+  Name: BargeVessel
+  PrimaryMotion: Calculated (6 DOF)
+  PrimaryMotionIsTreatedAs: Wave frequency
+  SuperimposedMotion: None
+  VesselType: BargeLinear buoyancy

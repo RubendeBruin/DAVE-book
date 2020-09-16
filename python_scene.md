@@ -42,11 +42,11 @@ print(a.position)
 ```
 
 
-# Scene
+## Scene
 
 Apart from methods to create nodes, Scene also harbours functionality to delete, import, re-order and export nodes.
 
-## Creating scenes
+### Creating scenes
 
 A Scene is not a singleton. Multiple scenes can exist next to eachother.
 
@@ -81,7 +81,7 @@ Multiple nodes can be imported from file or directly from another Scene object u
 Note: Beware of name-conflicts when importing. The `Scene.import_scene` provides the option to add a prefix to names of imported nodes.
 
 
-## Access nodes
+### Access nodes
 
 A list of nodes is maintained as the ._nodes property of a scene. It is advised not to use this directly.
 

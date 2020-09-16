@@ -32,8 +32,8 @@ The connection_force property has six components (Fx, Fy, Fz, Mx, My, Mz) repres
 
 Consider de following example where the dotted orange lines indidate a parent-child relation:
 
-![forces1](images/forces_1.png)
 
+![forces1](images/forces_1.png)
 The sorted list of nodes is: Force node, Point node, Axis node (child), Axis node (parent).
 
 1. `Force node`: applies its force on the `point node`
@@ -50,7 +50,7 @@ You can stack as many nodes as you want.
 
 **Example**
 
-In following model (ref notebook) a total number of 11 Axes are stacked from left to right. On the rightmost node a vertical force is applied:
+In following model {doc}`Carene Table Notebook<DAVE-notebooks/force_traveling_through_a_beam>` a total number of 11 Axes are stacked from left to right. On the rightmost node a vertical force is applied:
 
 ![forces1](images/forces_2.png)
 

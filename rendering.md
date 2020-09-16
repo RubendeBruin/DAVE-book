@@ -47,3 +47,8 @@ This means that for a workflow with a nicely rendered result it is advised to
 [Blog post : meshing with blender](https://www.open-ocean.org/meshing-with-blender/)
 ```
 
+### Blender tutorial
+
+The blender tutorial from the official blender website.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MF1qEhBSfq4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

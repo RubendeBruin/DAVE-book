@@ -23,6 +23,7 @@
 - file: rigging
 - file: marine_calculations
 - file: dynamics
+- file: orcaflex
 - file: python
   sections:
     - file: python_imports
@@ -41,3 +42,8 @@
     - file: DAVE-notebooks/Carene Table.ipynb
     - file: DAVE-notebooks/dynamics.ipynb
     - file: DAVE-notebooks/Reporting node properties.ipynb
+    # Orcaflex
+    - file: DAVE-notebooks/crossvalidate_ofx_3plift.ipynb
+    - file: DAVE-notebooks/crossvalidate_ofx_Snake15.ipynb
+    - file: DAVE-notebooks/crossvalidate_ofx_barge_heel_trim.ipynb
+    - file: DAVE-notebooks/crossvalidate_ofx_dynamics.ipynb
