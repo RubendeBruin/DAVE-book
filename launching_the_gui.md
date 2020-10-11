@@ -2,7 +2,7 @@
 
 While in a python script, the graphical userinterface can be lauched to manually view or modify a scene. This can be done by importing the Gui class from DAVE.gui and constructing an instance of it with a Scene as parameter:
 
-```pyton
+```python
 from DAVE import *
 s = Scene()
 

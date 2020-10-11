@@ -1,3 +1,4 @@
+- file: intro
 - file: introduction
 - file: getting_started
   sections:
@@ -19,6 +20,8 @@
 - file: reporting
 - file: rendering
 - file: nodes    
+  sections:
+    - file: beams
 - file: nodes_reference
 - file: rigging
 - file: marine_calculations
@@ -47,3 +50,5 @@
     - file: DAVE-notebooks/crossvalidate_ofx_Snake15.ipynb
     - file: DAVE-notebooks/crossvalidate_ofx_barge_heel_trim.ipynb
     - file: DAVE-notebooks/crossvalidate_ofx_dynamics.ipynb
+    # Beams
+    - file: DAVE-notebooks/beams.ipynb

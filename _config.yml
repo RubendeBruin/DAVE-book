@@ -3,6 +3,9 @@ title: DAVE
 author: Ruben de Bruin
 logo: logo.png
 
+html:
+  google_analytics_id: UA-179178316-1
+
 latex:
   latex_documents:
     targetname: book.tex
