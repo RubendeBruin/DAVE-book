@@ -36,7 +36,7 @@ If you wish to use DAVE through Jupyter Lab then the DAVE environment needs to b
 ```
 activate DAVE
 conda install ipykernel
-ipykernel install --user --name DAVE --display-name "Python (DAVE)"
+python -m ipykernel install --user --name DAVE --display-name "Python (DAVE)"
 ```
 
 Jupyter Lab can be started using

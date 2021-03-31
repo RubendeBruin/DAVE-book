@@ -1,12 +1,8 @@
 - file: intro
 - file: introduction
-- file: getting_started
-  sections:
-    - file: open_source
-    - file: installation
-    - file: configuration
 - file: modelling_basics
   sections:
+    - file: concepts
     - file: geometry
     - file: points_and_circles
     - file: all_other_nodes
@@ -15,8 +11,12 @@
     - file: joints
     - file: forces
     - file: trees_and_loops
-- file: assets_and_resources
-- file: concepts
+- file: getting_started
+  sections:
+    - file: open_source
+    - file: installation
+    - file: configuration
+    - file: assets_and_resources
 - file: reporting
 - file: rendering
 - file: nodes    
@@ -25,13 +25,17 @@
 - file: nodes_reference
 - file: rigging
 - file: marine_calculations
+- file: bendingmoment.md
 - file: dynamics
+  sections:
+    - file: make_hydrodynamic_database
 - file: orcaflex
 - file: python
   sections:
     - file: python_imports
     - file: python_scene
     - file: launching_the_gui
+    - file: file_format
 - file: technical
   sections:
     - file: groups
@@ -52,3 +56,4 @@
     - file: DAVE-notebooks/crossvalidate_ofx_dynamics.ipynb
     # Beams
     - file: DAVE-notebooks/beams.ipynb
+    - file: DAVE-notebooks/BeamCatenary.ipynb

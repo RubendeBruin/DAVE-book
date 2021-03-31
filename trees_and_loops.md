@@ -1,7 +1,11 @@
 ## Trees and Loops
 
-Joints in DAVE are mathematically perfect. This has one big disadvantage: It is impossible to construct geometric loops in a structure. This is because a child can not be its own (grand) parent.
+Joints in DAVE are mathematically perfect. This has big advantages for numerical stability and solving speed.
+This has one big disadvantage: It is impossible to construct geometric loops in a structure. This is because a child can not be its own (grand) parent. Axis systems can only be placed on others as long as their family relations form a tree. Trees are good, loops are impossible.
+
 This is not unique to DAVE. Any software implementing multibody structures (Orcaflex constraints, bullet physics multibody) suffers from this.
+
+This is usually not a big problem as long as you are aware of it. The simplest solution is to use an elastic connector somewhere. Examples of elastic connectors are: beams, 2d springs, 6d springs and cables and shackles with their "elastic" property set to True.
 
 
 ### Work-around 1: Elastic connectors

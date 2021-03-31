@@ -24,6 +24,8 @@ export_ofx_yml(s, r'c:\data\orcaflex_model.yml')  # s is the Scene
 
 any .obj files used in visuals will be copied to the same folder as the .yml file.
 
+From the Gui: file -> export -> orcaflex
+
 
 ### Example notebooks
 
@@ -58,14 +60,17 @@ Cables are exported as winches.
 [TODO]
 Cables running over circles are not supported by orcaflex and are not exported.
 
-#### LinearBeam [TODO]
+#### Beams 
 
 Linear beams are exported as orcaflex lines.
 
+- The diameter (buoyancy) for lines in orcaflex is set to a small number
+- In orcaflex lines run along the Z axis while in DAVE they run along the X axis. Therefore DAVE.EIy --> orcaflex.EIx and DAVE.EIz --> orcaflex.EIy
+
+
 #### LC6D [TODO]
 
-Linear connectors with 6 degrees of freedom are exported as a set of six linear springs.
-
+Linear connectors with 6 degrees of freedom are exported as a set of six linear springs and constraints.
 This is not an exact representation (there is a sin(angle) term instead of a tan(angle) term) but is fine for small angles and displacements.
 
 #### Connector2d  [TODO]
