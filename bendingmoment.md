@@ -14,7 +14,7 @@ For the calculation of the global shearforce and bending moments it is important
 
 DAVE distinguishes point loads and distributed loads. 
 
-- Points loads are connected to the nearest point on the moment-line beam.
+- Pointsloads are connected to the nearest point on the moment-line beam.
 - Distributed loads are distributed over the portion of the beam bewteen the points on the beam closest to outer points of the distributed load.
 - Loads from fluids (buoyancy, tanks) distributes over the area directly above/below it.
 
@@ -30,7 +30,7 @@ Loads are loads resulting from forces on a point, connected axis systems or cont
 DAVE used the concept of "footprints" to define the area over which loads are distributed.
 Footprints are a series of 3d points (vertices) that can be defined on any point or axis. 
 
-The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load.
+The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load: so only the outer-most vertices in the current direction matter.
 Points and axis nodes for which no footprints are defined result in point loads.
 
 
