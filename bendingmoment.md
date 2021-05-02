@@ -33,6 +33,15 @@ Footprints are a series of 3d points (vertices) that can be defined on any point
 The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load.
 Points and axis nodes for which no footprints are defined result in point loads.
 
+
+#### Connections, loads from child nodes
+
+Each axis system applies its connection-force on its parent using its own footprint.
+The connection force of an axis includes the loads of all child nodes. 
+
+Footprints of nodes are only seen by the parent of a node.
+
+```
 #### Transparent / Opaque
 
 Axis systems can be transparent or opaque (non-transparent) to footprints.
@@ -47,7 +56,7 @@ On the right the bottom box is transparent. The effect is that the footprints of
 ![opaque_transparent]
 (images/opaque_transparent.png)
 
-
+```
 
 references:
 - DNVGL Rules for classification: Ships — DNVGL-RU-SHIP Pt.3 Ch.4.  https://rules.dnvgl.com/docs/pdf/dnvgl/ru-ship/2017-01/DNVGL-RU-SHIP-Pt3Ch4.pdf
