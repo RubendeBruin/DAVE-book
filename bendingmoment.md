@@ -29,13 +29,12 @@ Loads are loads resulting from forces on a point, connected axis systems or cont
 
 DAVE used the concept of "footprints" to define the area over which loads are distributed.
 Footprints are a series of 3d points (vertices) that can be defined on any point or axis.
-- Footprint for axis: Defined in local axis system
-- Footprint for point: Defined in parent axis system, relative to position of point
+
 
 The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load: so only the outer-most vertices in the current direction matter.
 Points and axis nodes for which no footprints are defined result in point loads.
 
-### Self-weight
+#### Self-weight
 
 Self weight of RigidBodies is applied using the same footprint.
 
@@ -46,22 +45,14 @@ The connection force of an axis includes the loads of all child nodes.
 
 Footprints of nodes are only seen by the parent of a node.
 
-```
-#### Transparent / Opaque
+### Implementation
 
-Axis systems can be transparent or opaque (non-transparent) to footprints.
+RigidBodies, Axis and Points have a property "footprint". This is a list of vertices (3d).
+- for axis: Defined in local axis system
+- for point: Defined in parent axis system, relative to position of point
+- for RigidBody: Defined in local axis system; use for self-weight as well.
 
-- Opaque axis sytems do re-distribute the forces of their children to their own footprints.
-- Transparent axis systems transfer the forces and footprints of their child nodes directly to their parent.
 
-This is illustrated in the picture below. This example shows two boxes on top of eachother. The top box is a child of the bottom box.
-On the left side the bottom box is opaque. The effect of this is that both the weight of the top box and the bottom box are applied using the footprint of the bottom box.
-On the right the bottom box is transparent. The effect is that the footprints of both boxes are applied directly on the moment-beam.
-
-![opaque_transparent]
-(images/opaque_transparent.png)
-
-```
 
 references:
 - DNVGL Rules for classification: Ships — DNVGL-RU-SHIP Pt.3 Ch.4.  https://rules.dnvgl.com/docs/pdf/dnvgl/ru-ship/2017-01/DNVGL-RU-SHIP-Pt3Ch4.pdf
