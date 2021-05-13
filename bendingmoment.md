@@ -28,11 +28,16 @@ the subtle difference beteen the last two is that for normal distributed loads t
 Loads are loads resulting from forces on a point, connected axis systems or contact meshes. 
 
 DAVE used the concept of "footprints" to define the area over which loads are distributed.
-Footprints are a series of 3d points (vertices) that can be defined on any point or axis. 
+Footprints are a series of 3d points (vertices) that can be defined on any point or axis.
+- Footprint for axis: Defined in local axis system
+- Footprint for point: Defined in parent axis system, relative to position of point
 
 The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load: so only the outer-most vertices in the current direction matter.
 Points and axis nodes for which no footprints are defined result in point loads.
 
+### Self-weight
+
+Self weight of RigidBodies is applied using the same footprint.
 
 #### Connections, loads from child nodes
 
