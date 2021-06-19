@@ -18,7 +18,7 @@ DAVE distinguishes point loads and distributed loads.
 - Distributed loads are distributed over the portion of the beam bewteen the points on the beam closest to outer points of the distributed load.
 - Loads from fluids (buoyancy, tanks) distributes over the area directly above/below it.
 
-the subtle difference beteen the last two is that for normal distributed loads the imaginary line connecting the load and the beam runs perpendicular to the beam while for fluid loads it runs in vertical direction. The effect is that normal distributed loads may add an moment to the beam while fluids loads do not.
+the subtle difference beteen the last two is that for normal distributed loads the imaginary line connecting the load and the beam runs perpendicular to the beam while for fluid loads it runs in vertical direction. The effect is that normal distributed loads may add an moment to the beam while fluids loads do not. The reason behind this difference is that otherwise shear and moment curves for vessels get jumps at segment intersections.
 
 ![global_bending_moment2]
 (images/global_bending_moment2.png)
