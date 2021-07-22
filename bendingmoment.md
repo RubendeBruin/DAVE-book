@@ -5,8 +5,7 @@ Calculation of the global bending moments and shear-forces in ships is an import
 For this caluculation a ship is modelled as a single beam with forces acting on it. Typically these forces are cargo, self-weight, ballast and buoyancy.
 In DAVE the global bending moments and shear-forces can be calulated for any axis system. Furthermore all loads from all nodes connected to that axis system will contribute to the shear and moment lines. This means that loads from cranes, grounding contact, trailered loads, pilelines are included.
 
-![global_bending_moment]
-(images/global_bending_moment1.png)
+![global_bending_moment](./images/global_bending_moment1.png)
 
 For the calculation of the global shearforce and bending moments it is important to know at which location or over which length a force is distributed.
 
@@ -20,8 +19,7 @@ DAVE distinguishes point loads and distributed loads.
 
 the subtle difference beteen the last two is that for normal distributed loads the imaginary line connecting the load and the beam runs perpendicular to the beam while for fluid loads it runs in vertical direction. The effect is that normal distributed loads may add an moment to the beam while fluids loads do not. The reason behind this difference is that otherwise shear and moment curves for vessels get jumps at segment intersections.
 
-![global_bending_moment2]
-(images/global_bending_moment2.png)
+![global_bending_moment2](./images/global_bending_moment2.png)
 
 #### Point loads / distributed loads
 
