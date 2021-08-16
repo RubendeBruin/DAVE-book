@@ -1,5 +1,4 @@
 - file: intro
-- file: introduction
 - file: modelling_basics
   sections:
     - file: concepts

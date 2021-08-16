@@ -15,7 +15,7 @@ Background: [Paper](https://joss.theoj.org/papers/10.21105/joss.01341).
 
 ### MaFreDo
 
-DAVE can read hydrodynamic data in the mafredo .dhyd format. [MaFreDo](https://github.com/RubendeBruin/mafredo) is a python package which is automatically installed when you install DAVE. 
+DAVE can read hydrodynamic data in the mafredo .dhyd format. [MaFreDo](https://mafredo.readthedocs.io/en/latest/) is a python package which is automatically installed when you install DAVE. 
 
 ### Recipe - capytaine
 
