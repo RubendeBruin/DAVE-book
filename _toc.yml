@@ -20,7 +20,9 @@
 - file: rendering
 - file: nodes    
   sections:
+    - file: nodes_geometry
     - file: beams
+    - file: nodes_other
 - file: nodes_reference
 - file: rigging
 - file: marine_calculations
