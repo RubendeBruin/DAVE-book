@@ -27,7 +27,7 @@ Model the lift:
 ```
 
 To avoid name conflices assets can be imporeted using a pre-fix on the element names.
-To enable movement and rotation of the imporeted nodes as a whole it is possible to place all imported elements in an axis (container). This means all positions and rotations are given relative to this axis. Moving and rotating this axis will move/rotate all contained nodes.
+To enable movement and rotation of the imporeted nodes as a whole it is possible to place all imported elements in a frame (container). This means all positions and rotations are given relative to this frame. Moving and rotating this frame will move/rotate all contained nodes.
 
 ### Resources
 

@@ -21,6 +21,7 @@
 - file: nodes    
   sections:
     - file: nodes_geometry
+    - file: node_tank
     - file: beams
     - file: nodes_other
 - file: nodes_reference

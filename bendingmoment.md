@@ -3,7 +3,7 @@
 Calculation of the global bending moments and shear-forces in ships is an important part of checking the longitudinal or global strength of a vessel.
 
 For this caluculation a ship is modelled as a single beam with forces acting on it. Typically these forces are cargo, self-weight, ballast and buoyancy.
-In DAVE the global bending moments and shear-forces can be calulated for any axis system. Furthermore all loads from all nodes connected to that axis system will contribute to the shear and moment lines. This means that loads from cranes, grounding contact, trailered loads and pilelines are included.
+In DAVE the global bending moments and shear-forces can be calculated for any frame. Furthermore all loads from all nodes connected to that axis system will contribute to the shear and moment lines. This means that loads from cranes, grounding contact, trailered loads and pilelines are included.
 
 ![global_bending_moment](./images/global_bending_moment1.png)
 
@@ -26,14 +26,14 @@ The subtle difference beteen the last two is that for normal distributed loads t
 
 #### Point loads / distributed loads
 
-Loads are loads resulting from forces on a point, connected axis systems or contact meshes. 
+Loads are loads resulting from forces on a point, connected frames or contact meshes. 
 
 DAVE used the concept of "footprints" to define the area over which loads are distributed.
-Footprints are a series of 3d points (vertices) that can be defined on any point or axis.
+Footprints are a series of 3d points (vertices) that can be defined on any point or frame.
 
 
 The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load: so only the outer-most vertices in the current direction matter.
-Points and axis nodes for which no footprints are defined result in point loads.
+Points and frame nodes for which no footprints are defined result in point loads.
 
 #### Self-weight
 
@@ -41,15 +41,15 @@ Self weight of RigidBodies is applied using the same footprint.
 
 #### Connections, loads from child nodes
 
-Each axis system applies its connection-force on its parent using its own footprint.
-The connection force of an axis includes the loads of all child nodes. 
+Each frame applies its connection-force on its parent using its own footprint.
+The connection force of a frame includes the loads of all child nodes. 
 
 Footprints of nodes are only seen by the parent of a node.
 
 ### Implementation
 
 RigidBodies, Axis and Points have a property "footprint". This is a list of vertices (3d).
-- for axis: Defined in local axis system
+- for frame: Defined in local axis system
 - for point: Defined in parent axis system, relative to position of point
 - for RigidBody: Defined in local axis system; use for self-weight as well.
 

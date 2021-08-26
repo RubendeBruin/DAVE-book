@@ -1,63 +1,5 @@
-# Node overview
+## Nodes reference
 
-#### Axis
-
-    Axis
-
-    Axes are the main building blocks of the geometry. They have a position and an rotation in space. Other nodes can be placed on them.
-    Axes can be nested by parent/child relationships meaning that an axis can be placed on an other axis.
-    The possible movements of an axis can be controlled in each degree of freedom using the "fixed" property.
-
-    Axes are also the main building block of inertia.
-    Dynamics are controlled using the inertia properties of an axis: inertia [mT], inertia_position[m,m,m] and inertia_radii [m,m,m]
-
-
-    Notes:
-         - circular references are not allowed: It is not allowed to place a on b and b on a
-
-    
-|  Property | Read-Only  | Documentation 
-|:---------------- |:------------------------------- |:---------------- |
-inertia |  | The linear inertia of the axis in [mT] Aka: "Mass"<br>        - used only for dynamics|
-inertia_position |  | The position of the center of inertia. Aka: "cog" [m,m,m] (local axis)<br>        - used only for dynamics<br>        - defined in local axis system|
-inertia_radii |  | The radii of gyration of the inertia [m,m,m] (local axis)<br><br>        Used to calculate the mass moments of inertia via<br><br>        Ixx = rxx^2 * inertia<br>        Iyy = rxx^2 * inertia<br>        Izz = rxx^2 * inertia<br><br>        Note that DAVE does not directly support cross terms in the interia matrix of an axis system. If you want to<br>        use cross terms then combine multiple axis system to reach the same result. This is because inertia matrices with<br>        diagonal terms can not be translated.<br>        |
-fixed |  | Determines which of the six degrees of freedom are fixed, if any. (x,y,z,rx,ry,rz).<br>        True means that that degree of freedom will not change when solving statics.<br>        False means a that is may be changed in order to find equilibrium.<br><br>        These are the expressed on the coordinate system of the parent (if any) or the global axis system (if no parent)<br><br>        See Also: set_free, set_fixed<br>        |
-x |  | The x-component of the position vector (parent axis) [m]|
-y |  | The y-component of the position vector (parent axis) [m]|
-z |  | The z-component of the position vector (parent axis) [m]|
-position |  | Position of the axis (parent axis) [m,m,m]<br><br>        These are the expressed on the coordinate system of the parent (if any) or the global axis system (if no parent)|
-rx |  | The x-component of the rotation vector [degrees] (parent axis)|
-ry |  | The y-component of the rotation vector [degrees] (parent axis)|
-rz |  | The z-component of the rotation vector [degrees], (parent axis)|
-rotation |  | Rotation of the axis about its origin (rx,ry,rz).<br>        Defined as a rotation about an axis where the direction of the axis is (rx,ry,rz) and the angle of rotation is |(rx,ry,rz| degrees.<br>        These are the expressed on the coordinate system of the parent (if any) or the global axis system (if no parent)|
-parent |  | Determines the parent of the axis. Should either be another axis or 'None'<br><br>        Other axis may be refered to by reference or by name (str). So the following are identical<br><br>            p = s.new_axis('parent_axis')<br>            c = s.new_axis('child axis')<br><br>            c.parent = p<br>            c.parent = 'parent_axis'<br><br>        To define that an axis does not have a parent use<br><br>            c.parent = None<br><br>        |
-gx |  | The x-component of the global position vector [m] (global axis )|
-gy |  | The y-component of the global position vector [m] (global axis )|
-gz |  | The z-component of the global position vector [m] (global axis )|
-global_position |  | The global position of the origin of the axis system  [m,m,m] (global axis)|
-grx |  | The x-component of the global rotation vector [degrees] (global axis)|
-gry |  | The y-component of the global rotation vector [degrees] (global axis)|
-grz |  | The z-component of the global rotation vector [degrees] (global axis)|
-tilt_x | Read-only | Tilt percentage. This is the z-component of the unit y vector [%].<br><br>        See Also: heel<br>        |
-heel | Read-only | Heel in degrees. SB down is positive [deg].<br>        This is the inverse sin of the unit y vector(This is the arcsin of the tiltx)<br><br>        See also: tilt_x<br>        |
-tilt_y | Read-only | Tilt percentage. This is the z-component of the unit -x vector [%].<br>        So a positive rotation about the y axis results in a positive tilt_y.<br><br>        See Also: trim<br>        |
-trim | Read-only | Trim in degrees. Bow-down is positive [deg].<br><br>        This is the inverse sin of the unit -x vector(This is the arcsin of the tilt_y)<br><br>        See also: tilt_y<br>        |
-heading | Read-only | Direction (0..360) [deg] of the local x-axis relative to the global x axis. Measured about the global z axis<br><br>        heading = atan(u_y,u_x)<br><br>        typically:<br>            heading 0  --> local axis align with global axis<br>            heading 90 --> local x-axis in direction of global y axis<br><br><br>        See also: heading_compass<br>        |
-heading_compass | Read-only | The heading (0..360)[deg] assuming that the global y-axis is North and global x-axis is East and rotation accoring compass definition|
-global_rotation |  | Rotation [deg,deg,deg] (global axis)|
-global_transform | Read-only | Read-only: The global transform of the axis system [matrix]|
-connection_force | Read-only | The forces and moments that this axis applies on its parent at the origin of this axis system. [kN, kN, kN, kNm, kNm, kNm] (Parent axis)<br><br>        If this axis would be connected to a point on its parent, and that point would be located at the location of the origin of this axis system<br>        then the connection force equals the force and moment applied on that point.<br><br>        Example:<br>            parent axis with name A<br>            this axis with name B<br>            this axis is located on A at position (10,0,0)<br>            there is a Point at the center of this axis system.<br>            A force with Fz = -10 acts on the Point.<br><br>            The connection_force is (-10,0,0,0,0,0)<br><br>            This is the force and moment as applied on A at point (10,0,0)<br><br><br>        |
-connection_force_x | Read-only | The x-component of the connection-force vector [kN] (Parent axis)|
-connection_force_y | Read-only | The y-component of the connection-force vector [kN] (Parent axis)|
-connection_force_z | Read-only | The z-component of the connection-force vector [kN] (Parent axis)|
-connection_moment_x | Read-only | The mx-component of the connection-force vector [kNm] (Parent axis)|
-connection_moment_y | Read-only | The my-component of the connection-force vector [kNm] (Parent axis)|
-connection_moment_z | Read-only | The mx-component of the connection-force vector [kNm] (Parent axis)|
-applied_force | Read-only | The force and moment that is applied on origin of this axis [kN, kN, kN, kNm, kNm, kNm] (Global axis)|
-ux | Read-only | The unit x axis [m,m,m] (Global axis)|
-uy | Read-only | The unit y axis [m,m,m] (Global axis)|
-uz | Read-only | The unit z axis [m,m,m] (Global axis)|
-equilibrium_error | Read-only | The unresolved force and moment that on this axis. Should be zero when in equilibrium  (applied-force minus connection force, Parent axis)|
 #### BallastSystem
 A BallastSystem is a group of Tank objects.
 
@@ -74,7 +16,7 @@ weight | Read-only | Total weight of all tank fillings in the ballast system [kN
 #### Beam
 A LinearBeam models a FEM-like linear beam element.
 
-    A LinearBeam node connects two Axis elements
+    A LinearBeam node connects two Frame elements
 
     By definition the beam runs in the X-direction of the nodeA axis system. So it may be needed to create a
     dedicated Axis element for the beam to control the orientation.
@@ -137,7 +79,6 @@ trimesh | Read-only | |
 cob | Read-only | GLOBAL position of the center of buoyancy [m,m,m] (global axis)|
 cob_local | Read-only | Position of the center of buoyancy [m,m,m] (local axis)|
 displacement | Read-only | Displaced volume of fluid [m^3]|
-density |  | Density of surrounding fluid [mT/m3].<br>        Typical values: Seawater = 1.025, fresh water = 1.00<br>        |
 #### Cable
 A Cable represents a linear elastic wire running from a Poi or sheave to another Poi of sheave.
 
@@ -232,6 +173,64 @@ moment |  | The x,y and z components of the moment (kNm,kNm,kNm) in the global a
 mx |  | The global x-component of the moment [kNm]  (global axis)|
 my |  | The global y-component of the moment [kNm]  (global axis)|
 mz |  | The global z-component of the moment [kNm]  (global axis)|
+#### Frame
+
+    Axis
+
+    Axes are the main building blocks of the geometry. They have a position and an rotation in space. Other nodes can be placed on them.
+    Axes can be nested by parent/child relationships meaning that an axis can be placed on an other axis.
+    The possible movements of an axis can be controlled in each degree of freedom using the "fixed" property.
+
+    Axes are also the main building block of inertia.
+    Dynamics are controlled using the inertia properties of an axis: inertia [mT], inertia_position[m,m,m] and inertia_radii [m,m,m]
+
+
+    Notes:
+         - circular references are not allowed: It is not allowed to place a on b and b on a
+
+    
+|  Property | Read-Only  | Documentation 
+|:---------------- |:------------------------------- |:---------------- |
+inertia |  | The linear inertia of the axis in [mT] Aka: "Mass"<br>        - used only for dynamics|
+inertia_position |  | The position of the center of inertia. Aka: "cog" [m,m,m] (local axis)<br>        - used only for dynamics<br>        - defined in local axis system|
+inertia_radii |  | The radii of gyration of the inertia [m,m,m] (local axis)<br><br>        Used to calculate the mass moments of inertia via<br><br>        Ixx = rxx^2 * inertia<br>        Iyy = rxx^2 * inertia<br>        Izz = rxx^2 * inertia<br><br>        Note that DAVE does not directly support cross terms in the interia matrix of an axis system. If you want to<br>        use cross terms then combine multiple axis system to reach the same result. This is because inertia matrices with<br>        diagonal terms can not be translated.<br>        |
+fixed |  | Determines which of the six degrees of freedom are fixed, if any. (x,y,z,rx,ry,rz).<br>        True means that that degree of freedom will not change when solving statics.<br>        False means a that is may be changed in order to find equilibrium.<br><br>        These are the expressed on the coordinate system of the parent (if any) or the global axis system (if no parent)<br><br>        See Also: set_free, set_fixed<br>        |
+x |  | The x-component of the position vector (parent axis) [m]|
+y |  | The y-component of the position vector (parent axis) [m]|
+z |  | The z-component of the position vector (parent axis) [m]|
+position |  | Position of the axis (parent axis) [m,m,m]<br><br>        These are the expressed on the coordinate system of the parent (if any) or the global axis system (if no parent)|
+rx |  | The x-component of the rotation vector [degrees] (parent axis)|
+ry |  | The y-component of the rotation vector [degrees] (parent axis)|
+rz |  | The z-component of the rotation vector [degrees], (parent axis)|
+rotation |  | Rotation of the axis about its origin (rx,ry,rz).<br>        Defined as a rotation about an axis where the direction of the axis is (rx,ry,rz) and the angle of rotation is |(rx,ry,rz| degrees.<br>        These are the expressed on the coordinate system of the parent (if any) or the global axis system (if no parent)|
+parent |  | Determines the parent of the axis. Should either be another axis or 'None'<br><br>        Other axis may be refered to by reference or by name (str). So the following are identical<br><br>            p = s.new_frame('parent_axis')<br>            c = s.new_frame('child axis')<br><br>            c.parent = p<br>            c.parent = 'parent_axis'<br><br>        To define that an axis does not have a parent use<br><br>            c.parent = None<br><br>        |
+gx |  | The x-component of the global position vector [m] (global axis )|
+gy |  | The y-component of the global position vector [m] (global axis )|
+gz |  | The z-component of the global position vector [m] (global axis )|
+global_position |  | The global position of the origin of the axis system  [m,m,m] (global axis)|
+grx |  | The x-component of the global rotation vector [degrees] (global axis)|
+gry |  | The y-component of the global rotation vector [degrees] (global axis)|
+grz |  | The z-component of the global rotation vector [degrees] (global axis)|
+tilt_x | Read-only | Tilt percentage. This is the z-component of the unit y vector [%].<br><br>        See Also: heel<br>        |
+heel | Read-only | Heel in degrees. SB down is positive [deg].<br>        This is the inverse sin of the unit y vector(This is the arcsin of the tiltx)<br><br>        See also: tilt_x<br>        |
+tilt_y | Read-only | Tilt percentage. This is the z-component of the unit -x vector [%].<br>        So a positive rotation about the y axis results in a positive tilt_y.<br><br>        See Also: trim<br>        |
+trim | Read-only | Trim in degrees. Bow-down is positive [deg].<br><br>        This is the inverse sin of the unit -x vector(This is the arcsin of the tilt_y)<br><br>        See also: tilt_y<br>        |
+heading | Read-only | Direction (0..360) [deg] of the local x-axis relative to the global x axis. Measured about the global z axis<br><br>        heading = atan(u_y,u_x)<br><br>        typically:<br>            heading 0  --> local axis align with global axis<br>            heading 90 --> local x-axis in direction of global y axis<br><br><br>        See also: heading_compass<br>        |
+heading_compass | Read-only | The heading (0..360)[deg] assuming that the global y-axis is North and global x-axis is East and rotation accoring compass definition|
+global_rotation |  | Rotation [deg,deg,deg] (global axis)|
+global_transform | Read-only | Read-only: The global transform of the axis system [matrix]|
+connection_force | Read-only | The forces and moments that this axis applies on its parent at the origin of this axis system. [kN, kN, kN, kNm, kNm, kNm] (Parent axis)<br><br>        If this axis would be connected to a point on its parent, and that point would be located at the location of the origin of this axis system<br>        then the connection force equals the force and moment applied on that point.<br><br>        Example:<br>            parent axis with name A<br>            this axis with name B<br>            this axis is located on A at position (10,0,0)<br>            there is a Point at the center of this axis system.<br>            A force with Fz = -10 acts on the Point.<br><br>            The connection_force is (-10,0,0,0,0,0)<br><br>            This is the force and moment as applied on A at point (10,0,0)<br><br><br>        |
+connection_force_x | Read-only | The x-component of the connection-force vector [kN] (Parent axis)|
+connection_force_y | Read-only | The y-component of the connection-force vector [kN] (Parent axis)|
+connection_force_z | Read-only | The z-component of the connection-force vector [kN] (Parent axis)|
+connection_moment_x | Read-only | The mx-component of the connection-force vector [kNm] (Parent axis)|
+connection_moment_y | Read-only | The my-component of the connection-force vector [kNm] (Parent axis)|
+connection_moment_z | Read-only | The mx-component of the connection-force vector [kNm] (Parent axis)|
+applied_force | Read-only | The force and moment that is applied on origin of this axis [kN, kN, kN, kNm, kNm, kNm] (Global axis)|
+ux | Read-only | The unit x axis [m,m,m] (Global axis)|
+uy | Read-only | The unit y axis [m,m,m] (Global axis)|
+uz | Read-only | The unit z axis [m,m,m] (Global axis)|
+equilibrium_error | Read-only | The unresolved force and moment that on this axis. Should be zero when in equilibrium  (applied-force minus connection force, Parent axis)|
 #### GeometricContact
 
     GeometricContact
@@ -481,6 +480,7 @@ level_global |  | The fluid plane elevation in the global axis system. Setting t
 volume |  | The volume of fluid in the tank in m3. Setting this adjusts the fluid level|
 density |  | Density of the fluid in the tank in mT/m3|
 capacity | Read-only | Returns the capacity of the tank in m3. This is calculated from the defined geometry.|
+ullage | Read-only | Ullage of the tank [m].<br>        The ullage is the distance between a measurement point and the fluid surface. The point is [xf,yf,zv] where<br>        xf and yf are the x and y coordinates (local) of the center of fluid when the tank is full. zv is the largest z value<br>        of all the vertices of the tank.<br>        The measurement direction is in local z-direction. If the tank is under an angle then this is not perpendicular to the fluid.<br>        Note: it is possible that this definition returns an ullage larger than the physical tank depth<br>        |
 #### TriMeshSource
 
     TriMesh
