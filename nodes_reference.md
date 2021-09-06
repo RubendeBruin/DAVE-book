@@ -423,42 +423,22 @@ kind |  | Type of shackle, for example GP800 [text]|
 A Sling is a single wire with an eye on each end. The eyes are created by splicing the end of the sling back
     into the itself.
 
-    The geometry of a sling is defined as follows:
-
-    diameter : diameter of the wire
-    LeyeA, LeyeB : inside lengths of the eyes
-    LsplicaA, LspliceB : the length of the splices
-    Total : the distance between the insides of ends of the eyes A and B when pulled straight.
-
-    Stiffness:
-    The stiffness of the sling is specified by a single value: EA
-    This determines the stiffnesses of the individual parts as follows:
-    Wire in the eyes: EA
-    Splices: Infinity (rigid)
-    Main part: determined such that total stiffness (k) of the sling is EA/L
-
-
-      Eye A           Splice A             nodeA part                   Splice B          Eye B
-
-    /---------------\                                                                /---------------    |                =============-------------------------------------===============                |
-    \---------------/                                                                \---------------/
-
-    See Also: Grommet
-
-    
-|  Property | Read-Only  | Documentation 
+    |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
+k_total |  | Total stiffness of the sling in kN/m|
 length |  | Total length measured between the INSIDE of the eyes of the sling is pulled straight. [m]|
 LeyeA |  | Total length inside eye A if stretched flat [m]|
 LeyeB |  | Total length inside eye B if stretched flat [m]|
 LspliceA |  | Length of the splice at end A [m]|
 LspliceB |  | Length of the splice at end B [m]|
 diameter |  | Diameter of the sling (except the splices) [m]|
-EA |  | Effective mean EA of the sling when eyes are flat [kN].<br>        This is the EA that would be obtained when measuring the stiffness of the sling by putting zero-diameter pins in the eyes and stretching the sling and then using the length between the insides of the eyes.|
+EA |  | EA of the wire of the sling.|
 mass |  | Mass and weight of the sling. This mass is discretized  distributed over the two splices [mT]|
 endA |  | End A [circle or point node]|
 endB |  | End B [circle or point node]|
 sheaves |  | List of sheaves (circles, points) that the sling runs over between the two ends.<br><br>        May be provided as list of nodes or node-names.<br>        |
+
+      May be provided as list of nodes or node-names.<br>        |
 #### Tank
 Tank provides a fillable tank based on a mesh. The mesh is triangulated and chopped at the instantaneous flat fluid surface. Gravity is applied as an downwards force that the center of fluid.
     The calculation of fluid volume and center is as accurate as the provided geometry.
