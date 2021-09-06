@@ -23,8 +23,9 @@
     - file: nodes_geometry
     - file: node_tank
     - file: beams
-    - file: nodes_other
+    - file: slings
     - file: wind
+    - file: nodes_other
 - file: nodes_reference
 - file: rigging
 - file: marine_calculations
@@ -63,3 +64,7 @@
     - file: DAVE-notebooks/LoadShearBending_examples.ipynb
     # grommets
     - file: DAVE-notebooks/Grommets_loops.ipynb
+    # wind
+    - file: DAVE-notebooks/wind.ipynb
+    # rigging
+    - file: DAVE-notebooks/sling_length.ipynb

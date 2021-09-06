@@ -66,7 +66,7 @@ The area is constant around one axis, but plane-like about an axis perpendicular
 In this case the direction defines the axis about which the area is constant (ie: the center-axis of the cylinder).
    
 $$
-    Aw = A * ( 1 - |d_{wind} . d_{plane}| )
+    Aw = A * \sqrt{ 1 - (d_{wind} . d_{plane})^2 }
 $$
 
    The effective area is zero if the wind/current is parallel to the defined direction.
@@ -74,6 +74,8 @@ $$
 
 ![direction](images/wind_area_orientations.gif)
    
-See also:
-- DNV-RP-C205 : ENVIRONMENTAL CONDITIONS AND ENVIRONMENTAL LOADS
+### Notebooks
+ {doc}`Wind demonstration<DAVE-notebooks/wind>`
 
+### References:
+- DNV-RP-C205 : ENVIRONMENTAL CONDITIONS AND ENVIRONMENTAL LOADS
