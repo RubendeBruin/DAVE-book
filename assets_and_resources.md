@@ -9,6 +9,8 @@ Re-usable components of a model are typically stored as asset. Assets can be imp
 
 ![Library](./images/asset_library.png)
 
+or they can be used in a `Component` node (Where to save: see {doc}`Components<components>`)
+
 If a model contains many identical parts, it is good practice to save these parts as asset. 
 
 ```{admonition} Example:
@@ -20,8 +22,10 @@ Model the padeye:
 
 Model the lift:
 - Create the lifted object
-- Import the padeye asset and place it on the lifted object
-- Repeat for the other three padeyes.
+- Create Component node
+- Set the path of the component node to the padeye asset.
+- Place the component in the right position
+- Duplicate the component for the other three liftpoints
 - Import the hook asset.
 - Model slings and shackles.
 ```
@@ -50,6 +54,10 @@ A Scene contains a list of locations where assets and resources can be found. Th
 2. the `DAVE_models` subdirectory in the users home folder.
 3. the current work directory
 
+
+> Tip: The resource folders are shown in the standard-assets form (see image above)
+
+
 You are free to add more locations or remove existing locations by either changing the initilization in settings.py for a system-wide change or by changing the `resources_paths` list of the current Scene object.
 
 The order of the list is important.
@@ -71,9 +79,12 @@ In a typical workflow an asset would first be created in a local or project fold
 
 ### Loading and saving resources
 
-The path to a resource can be obtained using Scene.get_resource_path(name). This will loop over the resources_paths **from top to bottom**. It will return the full path to the first items found. More official assets or resources take precedence over less official ones.
+The path to a resource can be obtained by putting `res: ` in front of the filename. This will loop over the resources_paths **from top to bottom**. It will return the full path to the first items found. More official assets or resources take precedence over less official ones.
 
-If a resource with the same name is present in both the `resources` directory and the `DAVE_models` directory then a link to the one in the `resources` directory is returned.
+
+> `res: cube.obj` will resolve to the file cube.obj in the most-official resource folder 
+
+If a resource with the same name is present in both the `resources` directory and the `DAVE_models` directory then a link to the one in the `resources` directory is returned as `resources` is higher in the hierarchy than `DAVE_models`.
 
 When saving resoures the folders are evaluated from bottom to top. The first folder with write access is used to save the item. So this is exactly opposite from loading resources. **A resource is saved in the least official folder.**
 
@@ -91,7 +102,7 @@ Example
 
 ```python
 s = Scene()
-filename = s.get_resource_path('buoyancy cheetah.obj')  # will return the official buoyancy cheetah.obj
+filename = s.get_resource_path('res: buoyancy cheetah.obj')  # will return the official buoyancy cheetah.obj
 
 s.save_asset('empty')                 # assets saved in workfolder / empty.dave
 s.save_asset('subfolder/empty')       # assets saved in workfolder / subfolder / empty.dave
@@ -105,6 +116,7 @@ s.save_asset(r'c:\data\test.abc')     # will save as c:\data\test.abs
 ### Summary
 
 - Scene.resources_paths is a list of paths with locations where resources are located.
+- `res:` means look-up a file with this name in the resource folders 
 - This list is ordered from Most official to Least official
 - If a file with the same name exists in a more official location, then that file gets priority above a file with the same name in a less official location.
 - Saving files without specifying the full path will store them in the least official folder

@@ -1,13 +1,32 @@
-## Nodes reference
+# Nodes reference 
 
 #### BallastSystem
-A BallastSystem is a group of Tank objects.
+The BallastSystemNode is a non-physical node that marks a groups of Tank nodes as being the ballast system
+    of a vessel.
+
+    The BallastSystem node can interface with the ballast-solver to automatically determine a suitable ballast configuration.
 
     The tank objects are created separately and only their references are assigned to this ballast-system object.
+    That is done using the .tanks property which is a list.
+    The parent if this node is the vessel that the tanks belong to. The parent of the ballast system is expected to be
+    a Frame or Rigidbody which can be ballasted (should not have a parent).
+
+    Tanks can be excluded from the ballast algorithms by adding their names to the 'frozen' list.
+
+    Typical use:
+    - create vessel
+    - create tanks
+    - create ballast system
+    - adds tanks to ballast system using ballast_system.tanks.append(tank node)
+    - set the draft: ballast_system.target_elevation = -5.0 # note, typically negative
+    - and solve the tank fills: ballast_system.solve_ballast
+
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
+target_elevation |  | The target elevation of the parent of the ballast system.|
 cogx | Read-only | X position of combined CoG of all tank contents in the ballast-system. (global coordinate) [m]|
 cogy | Read-only | Y position of combined CoG of all tank contents in the ballast-system. (global coordinate) [m]|
 cogz | Read-only | Z position of combined CoG of all tank contents in the ballast-system. (global coordinate) [m]|
@@ -16,7 +35,7 @@ weight | Read-only | Total weight of all tank fillings in the ballast system [kN
 #### Beam
 A LinearBeam models a FEM-like linear beam element.
 
-    A LinearBeam node connects two Frame elements
+    A LinearBeam node connects two Axis elements
 
     By definition the beam runs in the X-direction of the nodeA axis system. So it may be needed to create a
     dedicated Axis element for the beam to control the orientation.
@@ -44,9 +63,10 @@ A LinearBeam models a FEM-like linear beam element.
     The rotation about the rotated X-axis is undefined.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-n_segments |  | |
+n_segments |  | Number of segments used in beam [-]|
 EIy |  | E * Iyy : bending stiffness in the XZ plane [kN m2]<br><br>        E is the modulus of elasticity; for steel 190-210 GPa (10^6 kN/m2)<br>        Iyy is the cross section moment of inertia [m4]<br>        |
 EIz |  | E * Izz : bending stiffness in the XY plane [kN m2]<br><br>        E is the modulus of elasticity; for steel 190-210 GPa (10^6 kN/m2)<br>        Iyy is the cross section moment of inertia [m4]<br>        |
 GIp |  | G * Ipp : torsional stiffness about the X (length) axis [kN m2]<br><br>        G is the shear-modulus of elasticity; for steel 75-80 GPa (10^6 kN/m2)<br>        Ip is the cross section polar moment of inertia [m4]<br>        |
@@ -54,8 +74,8 @@ EA |  | E * A : stiffness in the length direction [kN]<br><br>        E is the m
 tension_only |  | axial stiffness (EA) only applicable to tension [True/False]|
 mass |  | Mass of the beam in [mT]|
 L |  | Length of the beam in unloaded condition [m]|
-nodeA |  | The axis system that the A-end of the beam is connected to. The beam leaves this axis system along the X-axis|
-nodeB |  | The axis system that the B-end of the beam is connected to. The beam arrives at this axis system along the X-axis|
+nodeA |  | The axis system that the A-end of the beam is connected to. The beam leaves this axis system along the X-axis<br>        |
+nodeB |  | The axis system that the B-end of the beam is connected to. The beam arrives at this axis system along the X-axis<br>        |
 moment_A | Read-only | Moment on beam at node A (kNm, kNm, kNm) , axis system of node A|
 moment_B | Read-only | Moment on beam at node B (kNm, kNm, kNm) , axis system of node B|
 tension | Read-only | Tension in the beam [kN], negative for compression<br><br>        tension is calculated at the midpoints of the beam segments.<br>        |
@@ -73,9 +93,10 @@ Buoyancy provides a buoyancy force based on a buoyancy mesh. The mesh is triangu
 
     The normals of the panels should point towards to water.
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-trimesh | Read-only | |
+trimesh | Read-only | Reference to TriMeshSource object<br>        |
 cob | Read-only | GLOBAL position of the center of buoyancy [m,m,m] (global axis)|
 cob_local | Read-only | Position of the center of buoyancy [m,m,m] (local axis)|
 displacement | Read-only | Displaced volume of fluid [m^3]|
@@ -100,6 +121,7 @@ A Cable represents a linear elastic wire running from a Poi or sheave to another
 
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 tension | Read-only | Tension in the cable [kN]|
@@ -107,20 +129,32 @@ stretch | Read-only | Stretch of the cable [m]<br><br>        Tension [kN] = EA 
 length |  | Length of the cable when in rest [m]<br><br>        Tension [kN] = EA [kN] * stretch [m] / length [m]<br>        |
 EA |  | Stiffness of the cable [kN]<br><br>        Tension [kN] = EA [kN] * stretch [m] / length [m]<br>        |
 diameter |  | Diameter of the cable. Used when a cable runs over a circle. [m]|
-connections |  | List or Tuple of nodes that this cable is connected to. Nodes may be passed by name (string) or by reference.<br><br>        Example:<br>            p1 = s.new_point('point 1')<br>            p2 = s.new_point('point 2', position = (0,0,10)<br>            p3 = s.new_point('point 3', position = (10,0,10)<br>            c1 = s.new_circle('circle 1',parent = p3, axis = (0,1,0), radius = 1)<br>            c = s.new_cable("cable_1", endA="Point", endB = "Circle", length = 1.2, EA = 10000)<br><br>            c.connections = ('point 1', 'point 2', 'point 3')<br>            # or<br>            c.connections = (p1, p2,p3)<br>            # or<br>            c.connections = [p1, 'point 2', p3]  # all the same<br><br>        Notes:<br>            1. Circles can not be used as endpoins. If one of the endpoints is a Circle then the Point that that circle<br>            is located on is used instead.<br>            2. Points should not be repeated directly.<br><br>        The following will fail:<br>        c.connections = ('point 1', 'point 3', 'circle 1')<br><br>        because the last point is a circle. So circle 1 will be replaced with the point that the circle is on: point 3.<br><br>        so this becomes<br>        ('point 1','point 3','point 3')<br><br>        this is invalid because point 3 is repeated.<br><br>        |
+connections |  | List or Tuple of nodes that this cable is connected to. Nodes may be passed by name (string) or by reference.<br><br>        Example:<br>            p1 = s.new_point('point 1')<br>            p2 = s.new_point('point 2', position = (0,0,10)<br>            p3 = s.new_point('point 3', position = (10,0,10)<br>            c1 = s.new_circle('circle 1',parent = p3, axis = (0,1,0), radius = 1)<br>            c = s.new_cable("cable_1", endA="Point", endB = "Circle", length = 1.2, EA = 10000)<br><br>            c.connections = ('point 1', 'point 2', 'point 3')<br>            # or<br>            c.connections = (p1, p2,p3)<br>            # or<br>            c.connections = [p1, 'point 2', p3]  # all the same<br><br>        Notes:<br>            1. Circles can not be used as endpoins. If one of the endpoints is a Circle then the Point that that circle<br>            is located on is used instead.<br>            2. Points should not be repeated directly.<br><br>        The following will fail:<br>        c.connections = ('point 1', 'point 3', 'circle 1')<br><br>        because the last point is a circle. So circle 1 will be replaced with the point that the circle is on: point 3.<br><br>        so this becomes<br>        ('point 1','point 3','point 3')<br><br>        this is invalid because point 3 is repeated.<br>        <br>        |
 #### Circle
 A Circle models a circle shape based on a diameter and an axis direction
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 axis |  | Direction of the sheave axis (x,y,z) in parent axis system.<br><br>        Note:<br>            The direction of the axis is also used to determine the positive direction over the circumference of the<br>            circle. This is then used when cables run over the circle or the circle is used for geometric contacts. So<br>            if a cable runs over the circle in the wrong direction then a solution is to change the axis direction to<br>            its opposite:  circle.axis =- circle.axis. (another solution in that case is to define the connections of<br>            the cable in the reverse order)<br>        |
 radius |  | Radius of the circle [m]|
 global_position | Read-only | Returns the global position of the center of the sheave.<br><br>        Note: this is the same as the global position of the parent point.<br>        |
+position | Read-only | Returns the local position of the center of the sheave.<br><br>        Note: this is the same as the local position of the parent point.<br>        |
+#### Component
+Components are frame-nodes containing a scene. The imported scene is referenced by a file-name. All impored nodes
+    are placed in the components frame.
+    
+
+|  Property | Read-Only  | Documentation 
+|:---------------- |:------------------------------- |:---------------- |
+name |  | Name of the node (str), must be unique<br>        |
+path |  | Path of the model-file. For example res: padeye.dave<br>        |
 #### Connector2d
 A Connector2d linear connector with acts both on linear displacement and angular displacement.
 
     * the linear stiffness is defined by k_linear and is defined over the actual shortest direction between nodeA and nodeB.
     * the angular stiffness is defined by k_angular and is defined over the actual smallest angle between the two systems.
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 angle | Read-only | Actual angle between nodeA and nodeB [deg] (read-only)|
@@ -132,8 +166,8 @@ ay | Read-only | Y component of actual rotation axis between nodeA and nodeB (re
 az | Read-only | Z component of actual rotation axis between nodeA and nodeB (read-only)|
 k_linear |  | Linear stiffness [kN/m]|
 k_angular |  | Angular stiffness [kNm/rad]|
-nodeA |  | Connected axis system A|
-nodeB |  | Connected axis system B|
+nodeA |  | Connected axis system A<br>        |
+nodeB |  | Connected axis system B<br>        |
 #### ContactBall
 A ContactBall is a linear elastic ball which can contact with ContactMeshes.
 
@@ -141,9 +175,10 @@ A ContactBall is a linear elastic ball which can contact with ContactMeshes.
 
     The force is applied on the Poi and it not registered separately.
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-can_contact | Read-only | True if the ball ball is perpendicular to at least one of the faces of one of the meshes. So when contact is possible. To check if there is contact use "force"<br>        See Also: Force<br>        |
+can_contact | Read-only | True if the ball is currently perpendicular to at least one of the faces of one of the meshes. So when contact is possible. To check if there is contact use "force".<br>        See Also: Force<br>        |
 contact_force | Read-only | Returns the force on the ball [kN, kN, kN] (global axis)<br><br>        The force is applied at the center of the ball<br><br>        See Also: contact_force_magnitude<br>        |
 contact_force_magnitude | Read-only | Returns the absolute force on the ball, if any [kN]<br><br>        The force is applied on the center of the ball<br><br>        See Also: contact_force<br>        |
 compression | Read-only | Returns the absolute compression of the ball, if any [m]|
@@ -154,15 +189,31 @@ radius |  | Radius of the contact-ball [m]|
 k |  | Compression stiffness of the ball in force per meter of compression [kN/m]|
 #### ContactMesh
 A ContactMesh is a tri-mesh with an axis parent
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 trimesh | Read-only | The TriMeshSource object which can be used to change the mesh<br><br>        Example:<br>            s['Contactmesh'].trimesh.load_file('cube.obj', scale = (1.0,1.0,1.0), rotation = (0.0,0.0,0.0), offset = (0.0,0.0,0.0))<br>        |
+#### CurrentArea
+Abstract Based class for wind and current areas.
+
+|  Property | Read-Only  | Documentation 
+|:---------------- |:------------------------------- |:---------------- |
+force | Read-only | The x,y and z components of the force [kN,kN,kN] (global axis)|
+fx | Read-only | The global x-component of the force [kN] (global axis)|
+fy | Read-only | The global y-component of the force [kN]  (global axis)|
+fz | Read-only | The global z-component of the force [kN]  (global axis)|
+A |  | Total area [m2]. See also Ae|
+Ae | Read-only | Effective area [m2]. This is the projection of the total to the actual wind/current direction. Read only.|
+Cd |  | Cd coefficient [-]|
+direction |  | Depends on 'areakind'. For 'plane' this is the direction of the normal of the plane, for 'cylindrical' this is<br>        the direction of the axis and for 'sphere' this is not used [m,m,m]|
+areakind |  | Defines how to interpret the area.<br>        See also: `direction`|
 #### Force
 A Force models a force and moment on a poi.
 
     Both are expressed in the global axis system.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 force |  | The x,y and z components of the force [kN,kN,kN] (global axis)<br><br>        Example s['wind'].force = (12,34,56)<br>        |
@@ -189,6 +240,7 @@ mz |  | The global z-component of the moment [kNm]  (global axis)|
          - circular references are not allowed: It is not allowed to place a on b and b on a
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 inertia |  | The linear inertia of the axis in [mT] Aka: "Mass"<br>        - used only for dynamics|
@@ -218,7 +270,7 @@ trim | Read-only | Trim in degrees. Bow-down is positive [deg].<br><br>        T
 heading | Read-only | Direction (0..360) [deg] of the local x-axis relative to the global x axis. Measured about the global z axis<br><br>        heading = atan(u_y,u_x)<br><br>        typically:<br>            heading 0  --> local axis align with global axis<br>            heading 90 --> local x-axis in direction of global y axis<br><br><br>        See also: heading_compass<br>        |
 heading_compass | Read-only | The heading (0..360)[deg] assuming that the global y-axis is North and global x-axis is East and rotation accoring compass definition|
 global_rotation |  | Rotation [deg,deg,deg] (global axis)|
-global_transform | Read-only | Read-only: The global transform of the axis system [matrix]|
+global_transform | Read-only | Read-only: The global transform of the axis system [matrix]<br>        |
 connection_force | Read-only | The forces and moments that this axis applies on its parent at the origin of this axis system. [kN, kN, kN, kNm, kNm, kNm] (Parent axis)<br><br>        If this axis would be connected to a point on its parent, and that point would be located at the location of the origin of this axis system<br>        then the connection force equals the force and moment applied on that point.<br><br>        Example:<br>            parent axis with name A<br>            this axis with name B<br>            this axis is located on A at position (10,0,0)<br>            there is a Point at the center of this axis system.<br>            A force with Fz = -10 acts on the Point.<br><br>            The connection_force is (-10,0,0,0,0,0)<br><br>            This is the force and moment as applied on A at point (10,0,0)<br><br><br>        |
 connection_force_x | Read-only | The x-component of the connection-force vector [kN] (Parent axis)|
 connection_force_y | Read-only | The y-component of the connection-force vector [kN] (Parent axis)|
@@ -230,7 +282,7 @@ applied_force | Read-only | The force and moment that is applied on origin of th
 ux | Read-only | The unit x axis [m,m,m] (Global axis)|
 uy | Read-only | The unit y axis [m,m,m] (Global axis)|
 uz | Read-only | The unit z axis [m,m,m] (Global axis)|
-equilibrium_error | Read-only | The unresolved force and moment that on this axis. Should be zero when in equilibrium  (applied-force minus connection force, Parent axis)|
+equilibrium_error | Read-only | The remaining force and moment on this axis. Should be zero when in equilibrium  (applied-force minus connection force, Parent axis)|
 #### GeometricContact
 
     GeometricContact
@@ -270,10 +322,12 @@ equilibrium_error | Read-only | The unresolved force and moment that on this axi
 
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-child |  | The Circle that is connected to the GeometricContact [Node]<br><br>        See Also: parent<br>        |
-parent |  | The Circle that the GeometricConnection is connected to [Node]<br><br>        See Also: child<br>        |
+name |  | Name of the node (str), must be unique<br>        |
+child |  | The Circle that is connected to the GeometricContact [Node]<br><br>        See Also: parent<br>        <br>        |
+parent |  | The Circle that the GeometricConnection is connected to [Node]<br><br>        See Also: child<br>        <br>        |
 swivel |  | Swivel angle between parent and child objects [degrees]|
 swivel_fixed |  | Allow parent and child to swivel relative to eachother [boolean]|
 rotation_on_parent |  | Angle between the line connecting the centers of the circles and the axis system of the parent node [degrees]|
@@ -288,6 +342,7 @@ A HydSpring models a linearized hydrostatic spring.
     All other properties are defined relative to the cob.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 cob |  | Center of buoyancy in parent axis system (m,m,m)|
@@ -318,11 +373,12 @@ A LC6d models a Linear Connector with 6 dofs.
     It is better to use use the "fixed" property of axis systems to create joints.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 stiffness |  | Stiffness of the connector: kx, ky, kz, krx, kry, krz in [kN/m and kNm/rad] (axis system of the main axis)|
-main |  | Main axis system. This axis system dictates the axis system that the stiffness is expressed in|
-secondary |  | Secondary (connected) axis system|
+main |  | Main axis system. This axis system dictates the axis system that the stiffness is expressed in<br>        |
+secondary |  | Secondary (connected) axis system<br>        |
 fgx | Read-only | Force on main in global coordinate frame [kN]|
 fgy | Read-only | Force on main in global coordinate frame [kN]|
 fgz | Read-only | Force on main in global coordinate frame [kN]|
@@ -333,11 +389,22 @@ mgz | Read-only | Moment on main in global coordinate frame [kNm]|
 moment_global | Read-only | Moment on main in global coordinate frame [kNm]|
 #### Point
 A location on an axis
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 x |  | x component of local position [m] (parent axis)|
 y |  | y component of local position [m] (parent axis)|
 z |  | z component of local position [m] (parent axis)|
+applied_force | Read-only | Applied force [kN,kN,kN] (parent axis)|
+force | Read-only | total force magnitude as applied on the point [kN]|
+fx | Read-only | x component of applied force [kN] (parent axis)|
+fy | Read-only | y component of applied force [kN] (parent axis)|
+fz | Read-only | z component of applied force [kN] (parent axis)|
+applied_moment | Read-only | Applied moment [kNm,kNm,kNm] (parent axis)|
+moment | Read-only | total moment magnitude as applied on the point [kNm]|
+mx | Read-only | x component of applied moment [kNm] (parent axis)|
+my | Read-only | y component of applied moment [kNm] (parent axis)|
+mz | Read-only | z component of applied moment [kNm] (parent axis)|
 position |  | Local position [m,m,m] (parent axis)|
 applied_force_and_moment_global | Read-only | Applied force and moment on this point [kN, kN, kN, kNm, kNm, kNm] (Global axis)|
 gx |  | x component of position [m] (global axis)|
@@ -346,10 +413,11 @@ gz |  | z component of position [m] (global axis)|
 global_position |  | Global position [m,m,m] (global axis)|
 #### RigidBody
 A Rigid body, internally composed of an axis, a point (cog) and a force (gravity)
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-name |  | |
-footprint |  | |
+name |  | Name of the node (str), must be unique<br>        |
+footprint |  | Sets the footprint vertices. Supply as an iterable with each element containing three floats|
 cogx |  | x-component of cog position [m] (local axis)|
 cogy |  | y-component of cog position [m] (local axis)|
 cogz |  | z-component of cog position [m] (local axis)|
@@ -379,6 +447,7 @@ An SPMT is a Self-propelled modular transporter
     Finally an equal force is applied on all the axle connection points. This force acts in local Z direction.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 axle_force | Read-only | Returns the force on each of the axles [kN, kN, kN] (global axis)|
@@ -416,15 +485,35 @@ axles |  | Axles is a list axle positions. Each entry is a (x,y,z) entry which d
     Returns:
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 kind |  | Type of shackle, for example GP800 [text]|
+name |  | Name of the node (str), must be unique<br>        |
 #### Sling
 A Sling is a single wire with an eye on each end. The eyes are created by splicing the end of the sling back
     into the itself.
 
-    |  Property | Read-Only  | Documentation 
+    The geometry of a sling is defined as follows:
+
+    diameter : diameter of the wire
+    LeyeA, LeyeB : inside lengths of the eyes
+    LsplicaA, LspliceB : the length of the splices
+    Ultimate length : the distance between the insides of ends of the eyes A and B when pulled straight (= Ultimate Length).
+
+    Stiffness:
+    The stiffness of the sling is specified by a single value: EA. EA can be set directly or by providing a k_total
+    This determines the stiffnesses of the individual parts as follows:
+    Wire in the eyes: EA
+    Splices: Infinity (rigid)
+
+    See Also: Grommet
+
+    
+
+|  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
+name |  | Name of the node (str), must be unique<br>        |
 k_total |  | Total stiffness of the sling in kN/m|
 length |  | Total length measured between the INSIDE of the eyes of the sling is pulled straight. [m]|
 LeyeA |  | Total length inside eye A if stretched flat [m]|
@@ -432,13 +521,11 @@ LeyeB |  | Total length inside eye B if stretched flat [m]|
 LspliceA |  | Length of the splice at end A [m]|
 LspliceB |  | Length of the splice at end B [m]|
 diameter |  | Diameter of the sling (except the splices) [m]|
-EA |  | EA of the wire of the sling.|
+EA |  | EA of the wire of the sling. See also: k_total|
 mass |  | Mass and weight of the sling. This mass is discretized  distributed over the two splices [mT]|
-endA |  | End A [circle or point node]|
-endB |  | End B [circle or point node]|
-sheaves |  | List of sheaves (circles, points) that the sling runs over between the two ends.<br><br>        May be provided as list of nodes or node-names.<br>        |
-
-      May be provided as list of nodes or node-names.<br>        |
+endA |  | End A [circle or point node]<br>        |
+endB |  | End B [circle or point node]<br>        |
+sheaves |  | List of sheaves (circles, points) that the sling runs over between the two ends.<br><br>        May be provided as list of nodes or node-names.<br>        <br>        |
 #### Tank
 Tank provides a fillable tank based on a mesh. The mesh is triangulated and chopped at the instantaneous flat fluid surface. Gravity is applied as an downwards force that the center of fluid.
     The calculation of fluid volume and center is as accurate as the provided geometry.
@@ -447,20 +534,21 @@ Tank provides a fillable tank based on a mesh. The mesh is triangulated and chop
 
     The normals of the panels should point *away* from the fluid. This means that the same basic shapes can be used for both buoyancy and tanks.
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-trimesh | Read-only | |
-free_flooding |  | |
+trimesh | Read-only | The TriMeshSource object which can be used to change the mesh<br><br>                Example:<br>                    s['Contactmesh'].trimesh.load_file('cube.obj', scale = (1.0,1.0,1.0), rotation = (0.0,0.0,0.0), offset = (0.0,0.0,0.0))<br>            |
+free_flooding |  | Tank is filled till global waterline (aka: damaged) [bool]|
 permeability |  | Permeability is the fraction of the enclosed volume that can be filled with fluid [-]|
 cog | Read-only | Returns the GLOBAL position of the center of volume / gravity|
 cog_local | Read-only | Returns the local position of the center of gravity|
 cog_when_full | Read-only | Returns the LOCAL position of the center of volume / gravity of the tank when it is filled|
 fill_pct |  | Amount of volume in tank as percentage of capacity [%]|
 level_global |  | The fluid plane elevation in the global axis system. Setting this adjusts the volume|
-volume |  | The volume of fluid in the tank in m3. Setting this adjusts the fluid level|
+volume |  | The actual volume of fluid in the tank in m3. Setting this adjusts the fluid level|
 density |  | Density of the fluid in the tank in mT/m3|
-capacity | Read-only | Returns the capacity of the tank in m3. This is calculated from the defined geometry.|
-ullage | Read-only | Ullage of the tank [m].<br>        The ullage is the distance between a measurement point and the fluid surface. The point is [xf,yf,zv] where<br>        xf and yf are the x and y coordinates (local) of the center of fluid when the tank is full. zv is the largest z value<br>        of all the vertices of the tank.<br>        The measurement direction is in local z-direction. If the tank is under an angle then this is not perpendicular to the fluid.<br>        Note: it is possible that this definition returns an ullage larger than the physical tank depth<br>        |
+capacity | Read-only | Returns the capacity of the tank in m3. This is calculated from the defined geometry and permeability.|
+ullage | Read-only | Ullage of the tank [m].<br>        The ullage is the distance between a measurement point and the fluid surface. The point is [xf,yf,zv] where<br>        xf and yf are the x and y coordinates (local) of the center of fluid when the tank is full. zv is the largest z value<br>        of all the vertices of the tank.<br>        The measurement direction is in local z-direction. If the tank is under an angle then this is not perpendicular to the fluid.<br>        It is possible that this definition returns an ullage larger than the physical tank depth. In that case the physical depth of<br>        the tank is returned instead.<br>        |
 #### TriMeshSource
 
     TriMesh
@@ -468,6 +556,7 @@ ullage | Read-only | Ullage of the tank [m].<br>        The ullage is the distan
     A TriMesh node contains triangular mesh which can be used for buoyancy or contact
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
 #### Visual
@@ -490,9 +579,10 @@ ullage | Read-only | Ullage of the tank [m].<br>        The ullage is the distan
     Hint: To scale before rotation place the visual on a dedicated axis and rotate that axis.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-file_path | Read-only | |
+file_path | Read-only | Resolved path of the visual (str)<br>        |
 #### WaveInteraction1
 
     WaveInteraction
@@ -508,6 +598,21 @@ file_path | Read-only | |
     but are to be provided separately in a file. This node contains only the file-name.
 
     
+
 |  Property | Read-Only  | Documentation 
 |:---------------- |:------------------------------- |:---------------- |
-file_path | Read-only | |
+file_path | Read-only | Resolved path of the visual (str)<br>        |
+#### WindArea
+Abstract Based class for wind and current areas.
+
+|  Property | Read-Only  | Documentation 
+|:---------------- |:------------------------------- |:---------------- |
+force | Read-only | The x,y and z components of the force [kN,kN,kN] (global axis)|
+fx | Read-only | The global x-component of the force [kN] (global axis)|
+fy | Read-only | The global y-component of the force [kN]  (global axis)|
+fz | Read-only | The global z-component of the force [kN]  (global axis)|
+A |  | Total area [m2]. See also Ae|
+Ae | Read-only | Effective area [m2]. This is the projection of the total to the actual wind/current direction. Read only.|
+Cd |  | Cd coefficient [-]|
+direction |  | Depends on 'areakind'. For 'plane' this is the direction of the normal of the plane, for 'cylindrical' this is<br>        the direction of the axis and for 'sphere' this is not used [m,m,m]|
+areakind |  | Defines how to interpret the area.<br>        See also: `direction`|

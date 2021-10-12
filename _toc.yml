@@ -27,6 +27,8 @@
     - file: wind
     - file: nodes_other
 - file: nodes_reference
+- file: components
+- file: limits
 - file: rigging
 - file: marine_calculations
 - file: bendingmoment.md
