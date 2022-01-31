@@ -70,3 +70,4 @@
     - file: DAVE-notebooks/wind.ipynb
     # rigging
     - file: DAVE-notebooks/sling_length.ipynb
+    - file: DAVE-notebooks/wire_weight.ipynb

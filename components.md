@@ -57,4 +57,4 @@ is created. This can be triggered manually from the file menu (file->reload-comp
 But DAVE also re-creates nodes when using the undo functionality and when internally creating copies of 
 a scene for solving or multi-threading.
 
-*TLDR: After updating a component file, use file->reload-components to update all the depending components.*
+*TLDR: After updating a component file, use scene->reload-components to update all the depending components.*
