@@ -25,6 +25,7 @@
     - file: beams
     - file: slings
     - file: wind
+    - file: DAVE-notebooks/SPMT.ipynb
     - file: nodes_other
 - file: nodes_reference
 - file: components
