@@ -1,4 +1,4 @@
-## Configuration
+# Configuration
 
 By default DAVE will try to create a subfolder "DAVE_models" in the users HOME folder (%homepath% in windows,  ~ in linux). This folder will be used for storing temporary files, the log file, and as default save location for assets and models.
 
@@ -22,7 +22,7 @@ All settings are defined in UPPERCASE.
 
 Note: Changing G or RHO has no effect at this moment as these values would also need to be changed in the equilibrium-core
 
-#### / or \\
+## / or \\
 
 DAVE is multiplatform. It runs fine under windows as well as linux.
 Windows uses a \\ in path definitions while linux uses as /.
@@ -30,7 +30,7 @@ The python standard [pathlib](https://docs.python.org/3/library/pathlib.html) li
 
 
 
-### File format
+## File format
 
 The standard file-format for saving DAVE scenes and nodes is [vanilla](https://en.wikipedia.org/wiki/Vanilla_software) python.
 

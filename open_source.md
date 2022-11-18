@@ -1,4 +1,4 @@
-## Open Source - implications and possibilities
+# Open Source - implications and possibilities
 
 The python part of DAVE (The API, Gui, jupyter, exporters, etc) are open-source.
 The equilibrium core that is used by DAVE is a commercial component. Equilibrium core can be used for free for educational purposes. 
@@ -6,7 +6,7 @@ The equilibrium core that is used by DAVE is a commercial component. Equilibrium
 DAVE will attempt to download the equilibrium-core when starting the GUI.
 
 
-### DAVE API / GUI / etc.
+## DAVE API / GUI / etc.
 The DAVE API, gui and jupyter interface are published under the MPL 2.0 license and are written in python.
 This means you are free to download the source-code and do pretty much anything with it. It also means that it comes without warranty nor liability. You may change the source-code but you must disclose the changes if you re-distribute it.
 
@@ -22,7 +22,7 @@ If you encounter any issues/bugs in the open-source part then the github reposit
 - [DAVE Source code](https://github.com/RubendeBruin/DAVE)
 - [Issue tracker](https://github.com/RubendeBruin/DAVE/issues)
 
-### Equilibrium core
+## Equilibrium core
 
 Equilibrium core is the engine driving DAVE. It is the core module that takes care of the geometric calculations, forces and finding equilibrium.
 
@@ -30,7 +30,7 @@ If you already have an application that does this then it is possible to replace
 
 - [Equilibrium Core](https://www.open-ocean.org/equilibrium-core/)
 
-### What can you do?
+## What can you do?
 
 You do not have any obligation to give something back to DAVE. Just enjoy it. But if you want to do more then:
 - Contributors are welcome.

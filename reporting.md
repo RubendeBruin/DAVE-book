@@ -1,4 +1,4 @@
-## Reporting
+# Reporting
 
 Designing something awesome is fun. But there comes a time when you need to report and document what you did and how you did it. This is often one of the weak points of programs with a GUI. They can produce large tables and reports with data, but it is very hard to distinguish between data that you entered, data that was solved and data that was already there.
 
@@ -36,6 +36,6 @@ It is also possible to open the Gui from the notebook.
 
 And of course you can leverage all exisitng jupyter and python functionality such as pandas, matplotlib, pdf export etc.
 
-### Notebooks
+## Notebooks
  {doc}`Reporting demonstrations<DAVE-notebooks/Reporting node properties>`
 

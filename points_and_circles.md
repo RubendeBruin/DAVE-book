@@ -1,4 +1,4 @@
-### Points and Circles
+# Points and Circles
 
 In the previous section it was explained that Axis system nodes make up the backbone of the model.
 
@@ -25,6 +25,6 @@ The standard shackles have circles defining the center of the pin, bow and the i
 ![ps3](images/points_and_circles_3.png)
 
 
-#### Gui
+## Gui
 
 Just like with Axis nodes, the parent of Circles and Points can be changed by dragging and dropping in the node-tree.

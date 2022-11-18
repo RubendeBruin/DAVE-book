@@ -1,4 +1,4 @@
-## Beams
+# Beams
 
 Beams can be used to model slender and linear elastic items such as:
 
@@ -17,11 +17,11 @@ A beam node consists of a number of beam segments. Each of these segments has to
 
 
 
-### Not a typical FEM (Euler / Bernouilli) beam
+## Not a typical FEM (Euler / Bernouilli) beam
 
 Users of FEM packages may wonder why a beam element in DAVE is not equal to the typical Bernouilli-Euler beam element as found in many FEM packages. The reason for that is that FEM packages assume small displacements where DAVE does not. The small displacements assumption allow FEM packages to simplify the bending of a beam as the second derivative of the shape function. DAVE can not make this assumption.
 
-### Examples:
+## Examples:
 
 - {doc}`Cantilever beams<DAVE-notebooks/beams>`
 - {doc}`Wire catenaries<DAVE-notebooks/BeamCatenary>`

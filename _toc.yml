@@ -1,7 +1,6 @@
 format: jb-article
 root: intro
 sections:
-- file: introduction
 - file: modelling_basics
   sections:
   - file: concepts
@@ -23,8 +22,16 @@ sections:
 - file: rendering
 - file: nodes
   sections:
+  - file: nodes_geometry
+  - file: node_tank
   - file: beams
+  - file: slings
+  - file: wind
+#  - file: DAVE-notebooks/SPMT.ipynb
+  - file: nodes_other
 - file: nodes_reference
+- file: components
+- file: limits
 - file: rigging
 - file: marine_calculations
 - file: bendingmoment.md
@@ -41,17 +48,24 @@ sections:
 - file: technical
   sections:
   - file: groups
+  - file: shackle_library
 - file: notebooks
   sections:
   - file: DAVE-notebooks/force_traveling_through_rotated_axis_systems.ipynb
   - file: DAVE-notebooks/force_traveling_through_a_beam.ipynb
   - file: DAVE-notebooks/Reporting node properties.ipynb
+  - file: DAVE-notebooks/dynamics.ipynb
   - file: DAVE-notebooks/Suspended weight.ipynb
   - file: DAVE-notebooks/Carene Table.ipynb
-  - file: DAVE-notebooks/dynamics.ipynb
   - file: DAVE-notebooks/crossvalidate_ofx_3plift.ipynb
   - file: DAVE-notebooks/crossvalidate_ofx_Snake15.ipynb
   - file: DAVE-notebooks/crossvalidate_ofx_barge_heel_trim.ipynb
   - file: DAVE-notebooks/crossvalidate_ofx_dynamics.ipynb
   - file: DAVE-notebooks/beams.ipynb
   - file: DAVE-notebooks/BeamCatenary.ipynb
+  - file: DAVE-notebooks/Bending moment on Billy.ipynb
+  - file: DAVE-notebooks/LoadShearBending_examples.ipynb
+  - file: DAVE-notebooks/Grommets_loops.ipynb
+  - file: DAVE-notebooks/wind.ipynb
+  - file: DAVE-notebooks/sling_length.ipynb
+  - file: DAVE-notebooks/wire_weight.ipynb

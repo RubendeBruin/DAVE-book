@@ -1,8 +1,8 @@
-### Joints
+# Joints
 
 Joints are connections between bodies that allow certain movements and prohibit others. For example a hinge, ball-joint or slider. Some software packages use joints nodes or elements to model joints.  *DAVE does not need a dedicated joint node.*
 
-To model a joint in DAVE it is sufficient to release the relevant degree of freedom of an Axis.
+To model a joint in DAVE it is sufficient to release the relevant degree of freedom of a Frame.
 
 Examples:
 - to model a slider in x-direction : release only the X position
@@ -12,13 +12,13 @@ Examples:
 
 But how to model a slider in a direction that it not x,y or z? The solution is simple. Stack the partially released axis on another axis and rotate that second axis such that one of the main directions of the partially released axis points in the right direction. This is illustrated in the second example below.
 
-#### Example: hinging bar
+## Example: hinging bar
 
 The following example models a bar connected to a hinge.
 
 ![joints1](images/joints_1.png)
 
-- The bar is an Axis node
+- The bar is a Frame node
 - The cog of the bar is modelled by placing a Point on the bar (the parent of 'cog' is 'bar')
 - Gravity is modelled by applying a force node on the cog with a downward force of 1000 kN (the parent for 'weight' is 'cog')
 - A visual is added just because we can
@@ -30,7 +30,7 @@ You can create this model by copy-pasting the following python code into the Gui
 
 ```python
 
-s.new_axis(name='Axis',
+s.new_frame(name='Axis',
            fixed =(True, True, True, True, False, True) )
 
 s.new_point(name='cog',
@@ -56,18 +56,18 @@ In this example the hinge is modelled by releasing the Y-rotation of the beam.
 
 
 
-#### Example: cart on hill (inclined slider)
+## Example: cart on hill (inclined slider)
 
 This example illustrates how to model a slider under an angle. 
 
 ![joints2](images/joints_2.png)
 
 Consider a cart on a slope. The cart can move up and down along the slope, so it makes sense to model this as a slider in the direction of the slope.
-The key of doing this in DAVE is to introduce an dedicated Axis system node for the slope. This axis system can then be aligned with the slope by changing its orientation to (0,20,0).
+The key of doing this in DAVE is to introduce a dedicated frame node for the slope. This frame can then be aligned with the slope by changing its orientation to (0,20,0).
 
 ![joints3](images/joints_3.png)
 
-The cart can now be modelled as a child of the slope axis system. This means that the position of the cart is defined relative to the slope axis. Freeing the X-position of the cart enables it to move along the slope.
+The cart can now be modelled as a child of the slope frame. This means that the position of the cart is defined relative to the slope. Freeing the X-position of the cart enables it to move along the slope.
 
 
 You can create this model by copy-pasting the following python code into the Gui and executing it.
@@ -76,12 +76,12 @@ You can create this model by copy-pasting the following python code into the Gui
 
 ```python
 
-s.new_axis(name='Slope',
+s.new_frame(name='Slope',
            rotation=(0.0,
                      20.0,
                      0.0) )
 
-s.new_axis(name='Cart',
+s.new_frame(name='Cart',
            parent='Slope',
            fixed =(False, True, True, True, True, True) )
 
@@ -109,7 +109,7 @@ s.new_force(name='Force',
 
 ```
 
-##### Further investigation:
+## Further investigation:
 
 For self-study:
 

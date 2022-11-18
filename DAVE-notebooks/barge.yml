@@ -31,8 +31,8 @@
   - 0.0
   InitialPosition:
   - 50.0
-  - 0.0
-  - 5.7035494993584734e-08
+  - 7.566403220796788e-17
+  - 1.3789726693858029e-08
   Mass: 1.0e-06
   MomentsOfInertia:
   - 1.0e-06
@@ -53,28 +53,12 @@
   - 0
   - 0
   - 0
-  Mass: 12299.999824615852
+  Mass: 12299.999957596587
   MomentsOfInertia:
-  - 1229999.9824615852
-  - 19679999.719385363
-  - 19679999.719385363
+  - 1229999.9957596587
+  - 19679999.93215454
+  - 19679999.93215454
   Name: Barge
-  Volume: 0
-- CentreOfMass:
-  - 0.0
-  - 0.0
-  - 0.0
-  Connection: Barge
-  InitialPosition:
-  - 0.0
-  - 0.0
-  - 0.0
-  Mass: 0.0
-  MomentsOfInertia:
-  - 0.0
-  - 0.0
-  - 0.0
-  Name: Barge Ballast system
   Volume: 0
 Shapes:
 - Connection: Barge
@@ -87,36 +71,39 @@ Shapes:
   Rotation2: 0
   Rotation3: 0
   ShadedDrawingFileName: barge.obj
-  ShadedDrawingMirrorInPlane: XZ plane
-  ShadedDrawingRotation1: 0
-  ShadedDrawingRotation2: 90
-  ShadedDrawingRotation3: -90
+  ShadedDrawingMirrorInPlane: XY plane
+  ShadedDrawingOriginX: 0.0
+  ShadedDrawingOriginY: 0.0
+  ShadedDrawingOriginZ: 0.0
+  ShadedDrawingRotation1: -90.0
+  ShadedDrawingRotation2: -90.0
+  ShadedDrawingRotation3: 0.0
   Shape: Block
   ShapeType: Drawing
 VesselTypes:
 - Draughts:
-  - CentreOfBuoyancyX: 49.99999999999999
-    CentreOfBuoyancyY: 0.0
-    CentreOfBuoyancyZ: 1.999999971482253
+  - CentreOfBuoyancyX: 50.0
+    CentreOfBuoyancyY: 2.2737367622708725e-16
+    CentreOfBuoyancyZ: 1.9999999931051367
     CentreOfGravityX: 0
     CentreOfGravityY: 0
     CentreOfGravityZ: 0
-    DisplacedVolume: 11999.999828893517
+    DisplacedVolume: 11995.90209931773
     HydrostaticReferenceOriginDatumOrientationx: 0
     HydrostaticReferenceOriginDatumOrientationy: 0
-    HydrostaticReferenceOriginDatumPositionz: -3.999999942964505
+    HydrostaticReferenceOriginDatumPositionz: -3.9999999862102733
     HydrostaticStiffnessRx:
-    - -2.743558980000671e-08
-    - 2503947.9524628296
+    - 7.313658898056018e-08
+    - 2503092.888806954
     - 0.0
     HydrostaticStiffnessRy:
-    - -1508287.4999999998
+    - -1507772.4374999998
     - 0.0
-    - 25379624.944301043
+    - 25370958.105116986
     HydrostaticStiffnessz:
-    - 30165.749999963416
-    - -2.743558980000671e-08
-    - -1508287.4999999998
+    - 30155.448749999996
+    - 7.313658898056018e-08
+    - -1507772.4374999998
     Mass: 1.0e-06
     MomentOfInertiaTensorX:
     - 0.001

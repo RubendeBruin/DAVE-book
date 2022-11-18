@@ -1,13 +1,15 @@
-## Assets and resources
+# Assets and resources
 
 Assets are .DAVE files containing one or more Nodes. These are human readable python files.
 Resources are all files that DAVE can use in a model. For example visuals (.obj), hydrodynamic databases but also assets (.DAVE).
 
-### Assets
+## Assets
 
 Re-usable components of a model are typically stored as asset. Assets can be imported into a scene using `import_scene` or via the Library in the Gui.
 
 ![Library](./images/asset_library.png)
+
+or they can be used in a `Component` node (Where to save: see {doc}`Components<components>`)
 
 If a model contains many identical parts, it is good practice to save these parts as asset. 
 
@@ -20,21 +22,23 @@ Model the padeye:
 
 Model the lift:
 - Create the lifted object
-- Import the padeye asset and place it on the lifted object
-- Repeat for the other three padeyes.
+- Create Component node
+- Set the path of the component node to the padeye asset.
+- Place the component in the right position
+- Duplicate the component for the other three liftpoints
 - Import the hook asset.
 - Model slings and shackles.
 ```
 
 To avoid name conflices assets can be imporeted using a pre-fix on the element names.
-To enable movement and rotation of the imporeted nodes as a whole it is possible to place all imported elements in an axis (container). This means all positions and rotations are given relative to this axis. Moving and rotating this axis will move/rotate all contained nodes.
+To enable movement and rotation of the imporeted nodes as a whole it is possible to place all imported elements in a frame (container). This means all positions and rotations are given relative to this frame. Moving and rotating this frame will move/rotate all contained nodes.
 
-### Resources
+## Resources
 
 Some default resources are included with DAVE. These include basic geometric shapes, shackles and the famous DAVE fleet. You can add your own.
 
 
-### Storage locations
+## Storage locations
 
 
 DAVE is designed with use as part of a larger system in mind. In such a system various sources for assets and resources may exist.
@@ -49,6 +53,10 @@ A Scene contains a list of locations where assets and resources can be found. Th
 1. the `resources` subdirectory in the DAVE python source folder
 2. the `DAVE_models` subdirectory in the users home folder.
 3. the current work directory
+
+
+> Tip: The resource folders are shown in the standard-assets form (see image above)
+
 
 You are free to add more locations or remove existing locations by either changing the initilization in settings.py for a system-wide change or by changing the `resources_paths` list of the current Scene object.
 
@@ -69,29 +77,32 @@ s.resources_paths = [r'c:\master_assets', *s.resources_paths] # alternative to i
 
 In a typical workflow an asset would first be created in a local or project folder. Then it would be checked as approved. Once approved it would be moved to an official (write protected) folder.
 
-### Loading and saving resources
+## Loading and saving resources
 
-The path to a resource can be obtained using Scene.get_resource_path(name). This will loop over the resources_paths **from top to bottom**. It will return the full path to the first items found. More official assets or resources take precedence over less official ones.
+The path to a resource can be obtained by putting `res: ` in front of the filename. This will loop over the resources_paths **from top to bottom**. It will return the full path to the first items found. More official assets or resources take precedence over less official ones.
 
-If a resource with the same name is present in both the `resources` directory and the `DAVE_models` directory then a link to the one in the `resources` directory is returned.
+
+> `res: cube.obj` will resolve to the file cube.obj in the most-official resource folder 
+
+If a resource with the same name is present in both the `resources` directory and the `DAVE_models` directory then a link to the one in the `resources` directory is returned as `resources` is higher in the hierarchy than `DAVE_models`.
 
 When saving resoures the folders are evaluated from bottom to top. The first folder with write access is used to save the item. So this is exactly opposite from loading resources. **A resource is saved in the least official folder.**
 
 It is also possible to load or save resources using the full path. In that case the whole system is circumpassed.
 
-#### Subfolders
+### Subfolders
 
 The Scene object will *not* walk through sub-folders when looking for an asset or resource. This means that subfolders add to the uniqueness of the filename.
 A file called `attempt1/box.obj` is different from a file `attempt2/box.obj`
 
 
-### Examples
+## Examples
 
 Example 
 
 ```python
 s = Scene()
-filename = s.get_resource_path('buoyancy cheetah.obj')  # will return the official buoyancy cheetah.obj
+filename = s.get_resource_path('res: buoyancy cheetah.obj')  # will return the official buoyancy cheetah.obj
 
 s.save_asset('empty')                 # assets saved in workfolder / empty.dave
 s.save_asset('subfolder/empty')       # assets saved in workfolder / subfolder / empty.dave
@@ -102,9 +113,10 @@ s.get_resource_path('subfolder/empty.dave_asset') #  will return "workfolder / s
 s.save_asset(r'c:\data\test.abc')     # will save as c:\data\test.abs
 ```
 
-### Summary
+## Summary
 
 - Scene.resources_paths is a list of paths with locations where resources are located.
+- `res:` means look-up a file with this name in the resource folders 
 - This list is ordered from Most official to Least official
 - If a file with the same name exists in a more official location, then that file gets priority above a file with the same name in a less official location.
 - Saving files without specifying the full path will store them in the least official folder
