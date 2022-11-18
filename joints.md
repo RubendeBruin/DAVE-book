@@ -1,4 +1,4 @@
-### Joints
+# Joints
 
 Joints are connections between bodies that allow certain movements and prohibit others. For example a hinge, ball-joint or slider. Some software packages use joints nodes or elements to model joints.  *DAVE does not need a dedicated joint node.*
 
@@ -12,7 +12,7 @@ Examples:
 
 But how to model a slider in a direction that it not x,y or z? The solution is simple. Stack the partially released axis on another axis and rotate that second axis such that one of the main directions of the partially released axis points in the right direction. This is illustrated in the second example below.
 
-#### Example: hinging bar
+## Example: hinging bar
 
 The following example models a bar connected to a hinge.
 
@@ -56,7 +56,7 @@ In this example the hinge is modelled by releasing the Y-rotation of the beam.
 
 
 
-#### Example: cart on hill (inclined slider)
+## Example: cart on hill (inclined slider)
 
 This example illustrates how to model a slider under an angle. 
 
@@ -109,7 +109,7 @@ s.new_force(name='Force',
 
 ```
 
-##### Further investigation:
+## Further investigation:
 
 For self-study:
 

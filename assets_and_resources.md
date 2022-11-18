@@ -1,9 +1,9 @@
-## Assets and resources
+# Assets and resources
 
 Assets are .DAVE files containing one or more Nodes. These are human readable python files.
 Resources are all files that DAVE can use in a model. For example visuals (.obj), hydrodynamic databases but also assets (.DAVE).
 
-### Assets
+## Assets
 
 Re-usable components of a model are typically stored as asset. Assets can be imported into a scene using `import_scene` or via the Library in the Gui.
 
@@ -33,12 +33,12 @@ Model the lift:
 To avoid name conflices assets can be imporeted using a pre-fix on the element names.
 To enable movement and rotation of the imporeted nodes as a whole it is possible to place all imported elements in a frame (container). This means all positions and rotations are given relative to this frame. Moving and rotating this frame will move/rotate all contained nodes.
 
-### Resources
+## Resources
 
 Some default resources are included with DAVE. These include basic geometric shapes, shackles and the famous DAVE fleet. You can add your own.
 
 
-### Storage locations
+## Storage locations
 
 
 DAVE is designed with use as part of a larger system in mind. In such a system various sources for assets and resources may exist.
@@ -77,7 +77,7 @@ s.resources_paths = [r'c:\master_assets', *s.resources_paths] # alternative to i
 
 In a typical workflow an asset would first be created in a local or project folder. Then it would be checked as approved. Once approved it would be moved to an official (write protected) folder.
 
-### Loading and saving resources
+## Loading and saving resources
 
 The path to a resource can be obtained by putting `res: ` in front of the filename. This will loop over the resources_paths **from top to bottom**. It will return the full path to the first items found. More official assets or resources take precedence over less official ones.
 
@@ -90,13 +90,13 @@ When saving resoures the folders are evaluated from bottom to top. The first fol
 
 It is also possible to load or save resources using the full path. In that case the whole system is circumpassed.
 
-#### Subfolders
+### Subfolders
 
 The Scene object will *not* walk through sub-folders when looking for an asset or resource. This means that subfolders add to the uniqueness of the filename.
 A file called `attempt1/box.obj` is different from a file `attempt2/box.obj`
 
 
-### Examples
+## Examples
 
 Example 
 
@@ -113,7 +113,7 @@ s.get_resource_path('subfolder/empty.dave_asset') #  will return "workfolder / s
 s.save_asset(r'c:\data\test.abc')     # will save as c:\data\test.abs
 ```
 
-### Summary
+## Summary
 
 - Scene.resources_paths is a list of paths with locations where resources are located.
 - `res:` means look-up a file with this name in the resource folders 

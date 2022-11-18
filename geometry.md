@@ -1,4 +1,4 @@
-### Geometry
+# Geometry
 
 
 What can move and what can not? And which nodes move together?
@@ -70,7 +70,7 @@ Obviously multiple nodes can share the same parent. So for example placing a car
 
 This section showed how Frame nodes can be used to define how nodes are connected to each-other.
 
-#### Gui
+## Gui
 
 At this moment it is a good idea to play a bit with the graphical user interface.
 

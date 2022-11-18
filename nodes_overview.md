@@ -1,4 +1,4 @@
-### Nodes overview
+# Nodes overview
 
 A short overview of all available node types is given here. You may skip this section if you want.
 
@@ -6,7 +6,7 @@ A short overview of all available node types is given here. You may skip this se
 ![nodes_in_gui](images/all_nodes_gui.png)
 
 
-#### Backbone
+## Backbone
 
 |  Type | Provides  |
 |:---------------- |:------------------------------- |
@@ -14,7 +14,7 @@ A short overview of all available node types is given here. You may skip this se
 | `RigidBody` | An Axis with cog and weight  | 
 
 
-#### Geometry
+## Geometry
 
 |  Type | Provides  |
 |:---------------- |:------------------------------- |
@@ -23,7 +23,7 @@ A short overview of all available node types is given here. You may skip this se
 
 
 
-#### Connectors
+## Connectors
 
 Connectors connect two or more nodes and can apply a force on them based on their positions and orientations.
 
@@ -35,7 +35,7 @@ Connectors connect two or more nodes and can apply a force on them based on thei
 | `Connector2d` | Connects two axis systems with two linear springs. Orientation of the springs is determined by shortest distance between the two axis systems |
 
 
-#### Forces
+## Forces
 
 Forces apply a force to a node. The magnitude of the force may depend on the position and/or orientation of the node.
 
@@ -47,7 +47,7 @@ Forces apply a force to a node. The magnitude of the force may depend on the pos
 | `Tank` | A (ballast)tank mesh (.obj or .stl) attached to an Axis  |
 | `BallastSystem` | A group of ballast-tanks for which a ballast-plan can be created |
 
-#### Contact
+## Contact
 
 Basic elastic contact can be modelled using meshes and contact-balls.
 
@@ -56,7 +56,7 @@ Basic elastic contact can be modelled using meshes and contact-balls.
 | `ContactBall` | A ball with a radius and a stiffness |
 | `ContactMesh` | A mesh that can contact a contact ball  | 
 
-#### Information
+## Information
 
 
 |  Type | Provides  | 
@@ -64,7 +64,7 @@ Basic elastic contact can be modelled using meshes and contact-balls.
 | `Visual` | (Almost) Everything gets better when visualized :-). | 
 | `WaveInteraction1` | 1 st order hydrodynamic database | 
 
-#### Groups
+## Groups
 
 Nodes or groups of nodes can be "managed" by another node. This makes it possible to standardize common groups of nodes.
 For example the nodes that make up a shackle or sling.

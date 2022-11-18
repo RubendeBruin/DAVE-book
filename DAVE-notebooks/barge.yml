@@ -31,8 +31,8 @@
   - 0.0
   InitialPosition:
   - 50.0
-  - 1.5559865342483111e-24
-  - -4.028329847471923e-08
+  - 7.566403220796788e-17
+  - 1.3789726693858029e-08
   Mass: 1.0e-06
   MomentsOfInertia:
   - 1.0e-06
@@ -53,11 +53,11 @@
   - 0
   - 0
   - 0
-  Mass: 12300.000123871137
+  Mass: 12299.999957596587
   MomentsOfInertia:
-  - 1230000.0123871136
-  - 19680000.19819382
-  - 19680000.19819382
+  - 1229999.9957596587
+  - 19679999.93215454
+  - 19679999.93215454
   Name: Barge
   Volume: 0
 Shapes:
@@ -82,28 +82,28 @@ Shapes:
   ShapeType: Drawing
 VesselTypes:
 - Draughts:
-  - CentreOfBuoyancyX: 49.999999999999986
-    CentreOfBuoyancyY: -1.5158244876892777e-16
-    CentreOfBuoyancyZ: 2.0000000201416492
+  - CentreOfBuoyancyX: 50.0
+    CentreOfBuoyancyY: 2.2737367622708725e-16
+    CentreOfBuoyancyZ: 1.9999999931051367
     CentreOfGravityX: 0
     CentreOfGravityY: 0
     CentreOfGravityZ: 0
-    DisplacedVolume: 11995.90226148141
+    DisplacedVolume: 11995.90209931773
     HydrostaticReferenceOriginDatumOrientationx: 0
     HydrostaticReferenceOriginDatumOrientationy: 0
-    HydrostaticReferenceOriginDatumPositionz: -4.0000000402832985
+    HydrostaticReferenceOriginDatumPositionz: -3.9999999862102733
     HydrostaticStiffnessRx:
-    - -9.142073622570022e-09
-    - 2503092.8953298302
+    - 7.313658898056018e-08
+    - 2503092.888806954
     - 0.0
     HydrostaticStiffnessRy:
-    - -1507772.4375023402
+    - -1507772.4374999998
     - 0.0
-    - 25370958.11163973
+    - 25370958.105116986
     HydrostaticStiffnessz:
     - 30155.448749999996
-    - -9.142073622570022e-09
-    - -1507772.4375023402
+    - 7.313658898056018e-08
+    - -1507772.4374999998
     Mass: 1.0e-06
     MomentOfInertiaTensorX:
     - 0.001

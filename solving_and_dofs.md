@@ -1,4 +1,4 @@
-### Solving static equilibrium
+# Solving static equilibrium
 
 We have now covered how to create the structure (tree) of a model and how to decorate it with nodes. Time to move to the static solver.
 
@@ -17,7 +17,7 @@ By default the position and orientation of an axis node are fixed.
 Note that only the positions and orientations of Axis type nodes can be released. For all other node types this is not possible. They will either move with their parent (axis) or will not move at all.
 
 
-#### Example
+## Example
 
 The following example models a piano suspended from a skyhook.
 
@@ -76,7 +76,7 @@ To model a free haning piano we need to release this connection. As expected thi
 
 ![solving2](images/solving_solve_6dof.gif)
 
-##### What just happened?
+### What just happened?
 
 The static solver of DAVE just brought the model to a static equilibrium.
 The new X and Y positions of the origin of the piano node were changed to 2.0 and 1.0, bringing the cog of the piano right below the skyhook.

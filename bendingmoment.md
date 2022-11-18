@@ -1,4 +1,4 @@
-### Shearforce and bending moments
+# Shearforce and bending moments
 
 Calculation of the global bending moments and shear-forces in ships is an important part of checking the longitudinal or global strength of a vessel.
 
@@ -12,7 +12,7 @@ For the calculation of the global shearforce and bending moments it is important
 {doc}`Example results for Billy<DAVE-notebooks/Bending moment on Billy>`
 
 
-#### Where do loads connect?
+## Where do loads connect?
 
 DAVE distinguishes point loads and distributed loads. 
 
@@ -24,7 +24,7 @@ The subtle difference beteen the last two is that for normal distributed loads t
 
 ![global_bending_moment2](./images/global_bending_moment2.png)
 
-#### Point loads / distributed loads
+## Point loads / distributed loads
 
 Loads are loads resulting from forces on a point, connected frames or contact meshes. 
 
@@ -35,25 +35,25 @@ Footprints are a series of 3d points (vertices) that can be defined on any point
 The projection of the footprints onto the plane in which the shearforce and moments are calculated determines the extent of the distributed load: so only the outer-most vertices in the current direction matter.
 Points and frame nodes for which no footprints are defined result in point loads.
 
-#### Self-weight
+## Self-weight
 
 Self weight of RigidBodies is applied using the same footprint.
 
-#### Connections, loads from child nodes
+## Connections, loads from child nodes
 
 Each frame applies its connection-force on its parent using its own footprint.
 The connection force of a frame includes the loads of all child nodes. 
 
 Footprints of nodes are only seen by the parent of a node.
 
-### Implementation
+## Implementation
 
 RigidBodies, Axis and Points have a property "footprint". This is a list of vertices (3d).
 - for frame: Defined in local axis system
 - for point: Defined in parent axis system, relative to position of point
 - for RigidBody: Defined in local axis system; use for self-weight as well.
 
-### Examples
+## Examples
 
 - {doc}`Example results for Billy<DAVE-notebooks/Bending moment on Billy>`
 - {doc}`Various examples of bending moments<DAVE-notebooks/LoadShearBending_examples>`

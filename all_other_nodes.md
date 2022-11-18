@@ -1,4 +1,4 @@
-### All other nodes
+# All other nodes
 
 With frames, points and circles all geometric features of the model have been defined. Time to start decorating.
 
@@ -13,7 +13,7 @@ The 6D, 2D and beam connectors for example connect to two frames and apply an eq
 
 Cable nodes can connect an unlimited amount of Points and Circles via an elastic cable. Here the connected nodes are referred to as "connections".
 
-#### Gui
+## Gui
 
 Nodes with a parent are shown in the node-tree below their parent. Their parent can be changed by dragging and dropping the node onto a new parent.
 
@@ -24,12 +24,11 @@ Nodes without a parent are shown seperately. Their connected nodes are shown in 
 ![movie2](images/nodes_gui2.gif)
 
 
-#### The big exception
+## The big exception
 
 Some node types are frequently used together. For example an Axis, Point and Force to model an object with a cog. For convenience these combinations have been implemented as their own type. For all practical purposes they can be treated in the same way as any other node.
 
 *RigidBody* is a combination of and Axis, a point and a force. It can be used as Axis but adds a cog and a weight to it.
-
 
 
 

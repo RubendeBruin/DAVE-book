@@ -2473,7 +2473,7 @@ VesselTypes:
       - 0.0
     HydrostaticReferenceOriginDatumOrientationx: 0
     HydrostaticReferenceOriginDatumOrientationy: 0
-    HydrostaticReferenceOriginDatumPositionz: -0.1626016122718985
+    HydrostaticReferenceOriginDatumPositionz: -0.16260161227194736
     HydrostaticStiffnessRx:
     - 7.313658898056018e-08
     - 2020605.7104702955
@@ -5935,13 +5935,13 @@ Vessels:
   IncludeOtherDamping: 'Yes'
   IncludeWaveLoad1stOrder: 'Yes'
   IncludedInStatics: 6 DOF
-  InitialHeading: 360.0
-  InitialHeel: -4.617000848826889
+  InitialHeading: 7.966546945127656e-14
+  InitialHeel: -4.617000848826981
   InitialPosition:
-  - 0.03612121493894936
-  - -0.36720044093580645
-  - -4.546706547410559
-  InitialTrim: -0.45517554439431207
+  - 0.036121214938969075
+  - -0.3672004409358186
+  - -4.5467065474108015
+  InitialTrim: -0.45517554439453417
   Length: 1
   Name: BargeVessel
   PrimaryMotion: Calculated (6 DOF)

@@ -1,4 +1,4 @@
-## Rendering
+# Rendering
 
 Rendering is the art of converting a 3d model to a good looking 2d picture or video.
 
@@ -14,7 +14,7 @@ Once blender is installed a scene can be exported to blender directly by pressin
 When an animation is running then pressing the blender button will export the animation. Otherwise it will export the view.
 ```
 
-### The Base Scene
+## The Base Scene
 
 The Blender model starts with the blender base model that is included with DAVE.
 
@@ -30,7 +30,7 @@ It is possible to start with another base scene. This can be changed by either:
 - passing another file-name as argument to the `create_blend` or `create_blend_and_open` functions
 - changing the `BLENDER_BASE_SCENE` variable (defined in settings.py)
 
-### Assets
+## Assets
 
 All visuals are exported to Blender. All visuals in DAVE are either .obj or .stl files.
 
@@ -47,7 +47,7 @@ This means that for a workflow with a nicely rendered result it is advised to
 [Blog post : meshing with blender](https://www.open-ocean.org/meshing-with-blender/)
 ```
 
-### Blender tutorial
+## Blender tutorial
 
 The blender tutorial from the official blender website.
 

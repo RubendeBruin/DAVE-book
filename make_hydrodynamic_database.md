@@ -1,4 +1,4 @@
-## Making a hydrodynamic database
+# Making a hydrodynamic database
 
 
 A hydrodynamic database contains the first order wave and fluid interaction in the frequency domain. These are typically calculated using a panel method (BEM). DAVE does not include such a solver because these solvers already exists. Examples of available software are:
@@ -13,11 +13,11 @@ A hydrodynamic database contains the first order wave and fluid interaction in t
 A freely available BEM solver is [Capytaine](https://github.com/mancellin/capytaine).
 Background: [Paper](https://joss.theoj.org/papers/10.21105/joss.01341).
 
-### MaFreDo
+## MaFreDo
 
 DAVE can read hydrodynamic data in the mafredo .dhyd format. [MaFreDo](https://mafredo.readthedocs.io/en/latest/) is a python package which is automatically installed when you install DAVE. 
 
-### Recipe - capytaine
+## Recipe - capytaine
 
 This snippet show how to create a hydrodynamic database using Capytaine convert it to the mafredo format.
 Input is a panel model in .stl format. Output is a .dhyd file which can be used in DAVE.
