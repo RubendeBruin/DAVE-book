@@ -1,6 +1,7 @@
 format: jb-article
 root: intro
 sections:
+- file: Download_and_quick_start
 - file: modelling_basics
   sections:
   - file: concepts
@@ -22,6 +23,7 @@ sections:
 - file: rendering
 - file: nodes
   sections:
+  - file: DAVE-notebooks/Cables_and_Circles.ipynb
   - file: nodes_geometry
   - file: node_tank
   - file: beams

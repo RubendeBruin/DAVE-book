@@ -13,11 +13,11 @@
   - 0
   - 0
   - 0
-  Mass: 12299.999957596587
+  Mass: 12299.99999992974
   MomentsOfInertia:
-  - 1229999.9957596587
-  - 19679999.93215454
-  - 19679999.93215454
+  - 1229999.9999929739
+  - 19679999.999887582
+  - 19679999.999887582
   Name: Barge
   Volume: 0
 - CentreOfMass:
@@ -83,13 +83,13 @@ Shapes:
 VesselTypes:
 - Draughts:
   - AMDMethod: Frequency Dependent
-    CentreOfBuoyancyX: 50.0
-    CentreOfBuoyancyY: 2.2737367622708725e-16
-    CentreOfBuoyancyZ: 1.9999999931051367
+    CentreOfBuoyancyX: 50.00000000000001
+    CentreOfBuoyancyY: 0.0
+    CentreOfBuoyancyZ: 2.0000000001003944
     CentreOfGravityX: 0
     CentreOfGravityY: 0
     CentreOfGravityZ: 0
-    DisplacedVolume: 11995.90209931773
+    DisplacedVolume: 11995.90214127494
     FrequencyDependentAddedMassAndDamping:
     - AMDPeriodOrFrequency: 0.01
       AddedMassMatrixRx:
@@ -2473,19 +2473,19 @@ VesselTypes:
       - 0.0
     HydrostaticReferenceOriginDatumOrientationx: 0
     HydrostaticReferenceOriginDatumOrientationy: 0
-    HydrostaticReferenceOriginDatumPositionz: -0.16260161227194736
+    HydrostaticReferenceOriginDatumPositionz: -0.16260162599232775
     HydrostaticStiffnessRx:
-    - 7.313658898056018e-08
-    - 2020605.7104702955
+    - -0.0
+    - 2020605.710470426
     - 0.0
     HydrostaticStiffnessRy:
-    - -0.0
+    - 1.1701140012387865e-06
     - 0.0
-    - 24888470.92678033
+    - 24888470.926780157
     HydrostaticStiffnessz:
     - 30155.448749999996
-    - 7.313658898056018e-08
     - -0.0
+    - 1.1701140012387865e-06
     LoadRAOs:
       RAOOriginX: 50
       RAOOriginY: 0
@@ -5935,13 +5935,13 @@ Vessels:
   IncludeOtherDamping: 'Yes'
   IncludeWaveLoad1stOrder: 'Yes'
   IncludedInStatics: 6 DOF
-  InitialHeading: 7.966546945127656e-14
-  InitialHeel: -4.617000848826981
+  InitialHeading: 360.0
+  InitialHeel: -4.61700084970075
   InitialPosition:
-  - 0.036121214938969075
-  - -0.3672004409358186
-  - -4.5467065474108015
-  InitialTrim: -0.45517554439453417
+  - 0.036121215048391254
+  - -0.367200442113702
+  - -4.546706561130953
+  InitialTrim: -0.4551755443999029
   Length: 1
   Name: BargeVessel
   PrimaryMotion: Calculated (6 DOF)

@@ -34,7 +34,7 @@ Where to save: see {doc}`Assets and resources<assets_and_resources>`
 The component node creates a `Frame` into which the imported nodes are placed. This enables placement of the
 imported scene and control over its degrees of freedom. 
 
-A component "manages" the nodes in the imported scene. This means that their properties can not be changed.
+A component "manages" the nodes in the imported scene. This means that their properties can not be changed (except when exposed, see below).
 It *is* possible to reference to the nodes (for example connect a cable to them) or to use them as parent.
 
 ### Embedding
@@ -58,3 +58,42 @@ But DAVE also re-creates nodes when using the undo functionality and when intern
 a scene for solving or multi-threading.
 
 *TLDR: After updating a component file, use scene->reload-components to update all the depending components.*
+
+## Exposing component properties
+
+The main purpose of component is enabling re-use of (checked and approved) standard components. This is why the nodes in a component can by default not be changed, that would void the QC. 
+
+If editing is needed, then a component can be dissolved. Dissolving a component makes all nodes of the component normal nodes in the scene and removes the connection to the component .dave file that they came from. This means all the components nodes are now in the scene itself and thus uncontrolled.
+
+### .exposed
+
+A less rigorous way is to explicitly define that some of the properties of some of the nodes in a component **can** be changed. This can be done by declaring them as "exposed". This needs to be done by manually adding some python code to the .dave file.
+
+A variable`exposed` needs to be created as property of the scene. This variable is a list or tuple. Every entry in the variable is again a list or tuple with three items:
+
+- An unique description of the property
+- The name of the applicable node 
+- The name of the applicable property
+
+Consider the following example:
+
+<u>exposed_component.dave:</u>
+
+```python
+s.new_point('Point')
+s.new_frame('Frame')
+
+s.exposed = list()
+s.exposed.append(('Point position',
+				  'Point',
+				  'x'))
+s.exposed.append(('Frame fixed x',  # human description
+                  'Frame',          # name of the node
+                  'fixed_x'))       # propery 
+```
+
+In the Gui a button "edit exposed properties" should become enabled when a component with exposed properties is loaded.
+
+Note that this does not work for components inside components.
+
+The `exposed` property of a scene is maintained when loading/saving. So it is ok to edit a component in the Gui after defining the exposed properties. Note however that (node-names in) the exposed variable are not automatically updated when the name of a node is changed or the node is deleted. 

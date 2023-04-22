@@ -1,0 +1,75 @@
+- file: intro
+- file: modelling_basics
+  sections:
+    - file: concepts
+    - file: geometry
+    - file: points_and_circles
+    - file: all_other_nodes
+    - file: nodes_overview
+    - file: solving_and_dofs
+    - file: joints
+    - file: forces
+    - file: trees_and_loops
+- file: getting_started
+  sections:
+    - file: open_source
+    - file: installation
+    - file: configuration
+    - file: assets_and_resources
+- file: reporting
+- file: rendering
+- file: nodes    
+  sections:
+    - file: nodes_geometry
+    - file: node_tank
+    - file: beams
+    - file: slings
+    - file: wind
+    - file: DAVE-notebooks/SPMT.ipynb
+    - file: nodes_other
+- file: nodes_reference
+- file: components
+- file: limits
+- file: rigging
+- file: marine_calculations
+- file: bendingmoment.md
+- file: dynamics
+  sections:
+    - file: make_hydrodynamic_database
+- file: orcaflex
+- file: python
+  sections:
+    - file: python_imports
+    - file: python_scene
+    - file: launching_the_gui
+    - file: file_format
+- file: technical
+  sections:
+    - file: groups
+    - file: shackle_library
+- file: notebooks
+  sections:
+    - file: DAVE-notebooks/force_traveling_through_rotated_axis_systems.ipynb
+    - file: DAVE-notebooks/force_traveling_through_a_beam.ipynb
+    - file: DAVE-notebooks/Reporting node properties.ipynb
+    - file: DAVE-notebooks/dynamics.ipynb
+    - file: DAVE-notebooks/Suspended weight.ipynb
+    - file: DAVE-notebooks/Carene Table.ipynb
+    # Orcaflex
+    - file: DAVE-notebooks/crossvalidate_ofx_3plift.ipynb
+    - file: DAVE-notebooks/crossvalidate_ofx_Snake15.ipynb
+    - file: DAVE-notebooks/crossvalidate_ofx_barge_heel_trim.ipynb
+    - file: DAVE-notebooks/crossvalidate_ofx_dynamics.ipynb
+    # Beams
+    - file: DAVE-notebooks/beams.ipynb
+    - file: DAVE-notebooks/BeamCatenary.ipynb
+    # Bending moments
+    - file: DAVE-notebooks/Bending moment on Billy.ipynb
+    - file: DAVE-notebooks/LoadShearBending_examples.ipynb
+    # grommets
+    - file: DAVE-notebooks/Grommets_loops.ipynb
+    # wind
+    - file: DAVE-notebooks/wind.ipynb
+    # rigging
+    - file: DAVE-notebooks/sling_length.ipynb
+    - file: DAVE-notebooks/wire_weight.ipynb
